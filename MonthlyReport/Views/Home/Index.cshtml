@@ -1,0 +1,77 @@
+﻿@model MonthlyReport.Models.Home
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int role = Convert.ToInt32(Session["roleid"].ToString());
+}
+
+
+
+@*<div class="jumbotron">
+        <h1>ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>*@
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-8" style="line-height : 1.2; color : black">
+            <div style="font-size : 60pt;  " class="MetricLanding">Quaterly</div>
+            <div style="font-size : 60pt;" class="MetricLanding">Management</div>
+            <div style="font-size : 60pt;" class="MetricLanding">Report</div>
+            <br />
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="form-group MetricBold">
+                        <input type="text" style="height : 80px; font-size : 22pt ; width : 50%" value="@Model.quarter" readonly />
+                    </div>
+                </div>
+            </div>
+            <div>
+               
+                <div class="col-md-3">
+                    @Html.ActionLink("Edit", "IndexEdit", null, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+            <br />
+            <div style="border-bottom : 3px solid black; width :45%; text-align : left"></div>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-sm-3">
+                    <img width="100%" src="~/Images/DIX30_LOGO.png")" />
+                </div>
+                <div class="col-sm-3">
+                    <img width="100%" src="~/Images/OXFORD_LOGO.png")" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,109 @@
+﻿@model List<MonthlyReport.Models.SalesComments>
+@{
+    ViewBag.Title = "Other Phase Key Highlights Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var mod = @Html.Raw(Json.Encode(Model));
+      // alert(JSON.stringify(mod));
+            var dropdown = document.getElementById("Sector1");
+        if (dropdown != null) {
+
+              dropdown.value = mod[2].sector;
+            }
+        var dropdown1 = document.getElementById("Sector2");
+        if (dropdown1 != null) {
+
+            dropdown1.value = mod[3].sector;
+        }
+
+
+    });
+    function resetform() {
+        $("input:text").val("");
+
+        $("textarea").val("");
+        var dropdown = document.getElementById("Sector1");
+        if (dropdown != null) {
+
+            dropdown.value = "Sector";
+        }
+        var dropdown1 = document.getElementById("Sector2");
+        if (dropdown1 != null) {
+
+            dropdown1.value = "Sector";
+        }
+    };
+
+</script>
+
+
+
+
+
+
+<br />
+<div class="row">
+    <div class="col-sm-10"></div>
+    <div class="col-sm-1">
+        <button class="btn btn-primary" onclick="resetform();">Reset</button>
+    </div>
+    <div class="col-sm-1">
+        @Html.ActionLink("Cancel", "Index", "Sales", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+<br />
+
+@using (Html.BeginForm("CommentsEdit", "Sales", FormMethod.Post))
+{
+
+    <div class="row">
+        <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+            <tr style="border-bottom : 1px solid Black; padding-bottom : 10px" class="MetricBold" !important>
+                <th style="width : 10%; vertical-align :bottom;" class="MetricHeading"><div style="border-top : 1px solid Black;border-right: 1px solid black;border-left:1px solid black;margin-left : -13px; margin-bottom: -12px; margin-right : -13px;padding : 10px;">OTHER PHASE <br />KEY HIGHLIGHTS</div></th>
+                <td style="width : 45%; vertical-align : bottom">
+                    <select id=@("Sector1") name=@("Sector1") class=" form-control" style="font-size : 14px">
+                        <option value="Sector">Sector</option>
+                        <option value="Convenience">Convenience</option>
+                        @*<option value="Life Style">Life Style</option>*@
+                        <option value="Power Center I">Power Center I</option>
+                        <option value="Power Center II">Power Center II</option>
+                        <option value="Phase IV & V">Phase IV & V</option>
+                        <option value="Phase VI & VII">Phase VI & VII</option>
+                        @*<option value="Square">Square</option>*@
+
+                    </select>
+                </td>
+                <td style="width : 45%; vertical-align :bottom">
+                    <select id=@("Sector2") name=@("Sector2" ) class=" form-control" style="font-size : 14px">
+                        <option value="Sector">Sector</option>
+                        <option value="Convenience">Convenience</option>
+                        @*<option value="Life Style">Life Style</option>*@
+                        <option value="Power Center I">Power Center I</option>
+                        <option value="Power Center II">Power Center II</option>
+                        <option value="Phase IV & V">Phase IV & V</option>
+                        <option value="Phase VI & VII">Phase VI & VII</option>
+                        @*<option value="Square">Square</option>*@
+                    </select>
+                </td>
+            </tr>
+            <tr class="MetricName">
+                <th style="width : 10%; font-size : 18px; border-right : 1px solid black" rowspan="2">Comments</th>
+                <td style="width : 45%; vertical-align : bottom" rowspan="2">
+                    <textarea rows="10" style=" width :100%" name=@("comment1")>@Model[2].comment</textarea>
+                </td>
+                <td style="width : 45%; vertical-align :bottom" rowspan="2">
+                    <textarea rows="10" style=" width :100%" name=@("comment2")>@Model[3].comment</textarea>
+                </td>
+            </tr>
+            <tr></tr>
+        </table>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-11"></div><div class="col-sm-1"> <input type="submit" value="Save" class="btn btn-primary" /></div>
+    </div>
+}
+

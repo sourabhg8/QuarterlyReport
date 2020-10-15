@@ -1,0 +1,83 @@
+﻿@model IEnumerable<MonthlyReport.Models.Operations>
+@{
+    ViewBag.Title = "Operations & Security";
+    Layout = "~/Views/Shared/_LayoutMonthly.cshtml";
+    int i = 0;
+    int role = Convert.ToInt32(Session["roleid"].ToString());
+}
+
+@if (role == 1 || role == 6)
+{
+<div class="row">
+    <div class="col-md-10">
+
+    </div>
+    <div class="col-md-2">@Html.ActionLink("Edit", "OperationsEdit", "MonthlyOperations", null, new { @class = "btn btn-primary" })</div>
+</div>
+<br />
+}
+<br />
+
+<div class="row MetricBold">
+    <div class="col-md-6" style="text-align : left">
+        <h3>CAPEX</h3>
+    </div>
+    <div class="col-md-6" style="text-align : left">
+        <h3></h3>
+    </div>
+</div>
+<div class="row">
+    <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+        <tr style="padding-bottom : 5px; padding-top :0px" class="MetricBold" !important>
+            <th style="width : 20%;border-right : 1px solid Black; vertical-align : middle; padding-bottom : 5px; padding-top :0px"><h5 class="closetotable">Project</h5></th>
+            <th style="width : 10%; border-right : 1px solid black; vertical-align : middle; padding-bottom : 5px; padding-top :0px" class="textaligncenter"><h5 class="closetotable">Completion<br />Date</h5></th>
+            <th style="width : 10%; border-right : 1px solid black; vertical-align : middle; padding-bottom : 5px; padding-top :0px" class="textaligncenter"><h5 class="closetotable">Forecast <br />Completion <br />Date</h5></th>
+            <th style="width : 10%; border-right : 1px solid black; vertical-align : middle; padding-bottom : 5px; padding-top :0px" class="textaligncenter"><h5 class="closetotable">Budget</h5></th>
+            <th style="width : 10%; border-right : 1px solid black; vertical-align : middle; padding-bottom : 5px; padding-top :0px" class="textaligncenter"><h5 class="closetotable">Commit<br />to Date</h5></th>
+            <th style="width : 10%; border-right : 1px solid black; vertical-align : middle; padding-bottom : 5px; padding-top :0px" class="textaligncenter"><h5 class="closetotable">Co-owners <br />Approved<br />Amount</h5></th>
+            <th style="width : 30%; vertical-align : middle; padding-bottom : 5px; padding-top :0px"><h5 class="closetotable">Comments</h5></th>
+        </tr>
+        <tr><td colspan="7"></td></tr>
+        <tr class="MetricMis">
+            <td colspan="7" style="border : 2px solid black; text-align : center; font-size : 18px"><h5>Recoverable</h5></td>
+        </tr>
+        @foreach (var obj in Model)
+        {
+
+            if (obj.IsRecoverable)
+            {
+                i++;
+                <tr class="MetricName" style=" font-size : 14px" !important>
+                    <td style="width : 20%; border-right : 1px solid black; font-size : 14px">@obj.Project</td>
+                    <td style="width : 10%; border-right : 1px solid black">@obj.CompletionDate</td>
+                    <td style="width : 10%; border-right : 1px solid black">@obj.ForecastCompletionDate</td>
+                    <td style="width : 10%; border-right : 1px solid black" class="textboxrightalign">$ @obj.Budget</td>
+                    <td style="width : 10%; border-right : 1px solid black" class="">@obj.CommitToDate</td>
+                    <td style="width : 10%; border-right : 1px solid black" class="">@obj.ApprovedAmount</td>
+                    <td style="width : 30%;">@obj.Comments</td>
+                </tr>
+            }
+        }
+        <tr><td colspan="7"></td></tr>
+        <tr>
+            <td colspan="7" style="border : 2px solid black; text-align : center; font-size : 18px" class="MetricMis"><h5>Non Recoverable</h5></td>
+        </tr>
+        @foreach (var obj in Model)
+        {
+            if (!obj.IsRecoverable)
+            {
+                i++;
+                <tr class="MetricName" style="font-size : 14px">
+                    <td style="width : 20%; border-right : 1px solid black; font-size : 14px">@obj.Project</td>
+                    <td style="width : 10%;border-right : 1px solid black">@obj.CompletionDate</td>
+                    <td style="width : 10%;border-right : 1px solid black">@obj.ForecastCompletionDate</td>
+                    <td style="width : 10%;border-right : 1px solid black" class="textboxrightalign">$ @obj.Budget</td>
+                    <td style="width : 10%; border-right : 1px solid black" class=""> @obj.CommitToDate</td>
+                    <td style="width : 10%;border-right : 1px solid black" class=""> @obj.ApprovedAmount</td>
+                    <td style="width : 30%">@obj.Comments</td>
+                </tr>
+            }
+        }
+
+    </table>
+</div>

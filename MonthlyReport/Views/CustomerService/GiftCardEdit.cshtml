@@ -1,0 +1,251 @@
+﻿@model List<MonthlyReport.Models.GiftCard>
+@{
+    ViewBag.Title = "Gift Cards Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 0;
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var mod = @Html.Raw(Json.Encode(ViewBag.Header));
+      // alert(JSON.stringify(mod));
+            var dropdown1 = document.getElementById("Month1");
+        if (dropdown1 != null) {
+              dropdown1.value = mod.Month1;
+            }
+        var dropdown2 = document.getElementById("Month2");
+        if (dropdown2 != null) {
+
+            dropdown2.value = mod.Month2;
+        }
+
+        var dropdown3 = document.getElementById("Year1");
+        if (dropdown3 != null) {
+
+            dropdown3.value = mod.Year1;
+        }
+
+        var dropdown4 = document.getElementById("Year2");
+        if (dropdown4 != null) {
+
+            dropdown4.value = mod.Year2;
+        }
+
+        var dropdown5 = document.getElementById("Year3");
+        if (dropdown5 != null) {
+
+            dropdown5.value = mod.Year3;
+        }
+
+        var dropdown6 = document.getElementById("Year4");
+        if (dropdown6 != null) {
+
+            dropdown6.value = mod.Year4;
+        }
+
+    });
+    function resetform() {
+        $("input:text").val("");
+
+        $("textarea").val("");
+
+
+
+        var dropdown1 = document.getElementById("Month1");
+        if (dropdown1 != null) {
+            dropdown1.value = "Month";
+        }
+        var dropdown2 = document.getElementById("Month2");
+        if (dropdown2 != null) {
+
+            dropdown2.value = "Month";
+        }
+
+        var dropdown3 = document.getElementById("Year1");
+        if (dropdown3 != null) {
+
+            dropdown3.value = "";
+        }
+
+        var dropdown4 = document.getElementById("Year2");
+        if (dropdown4 != null) {
+
+            dropdown4.value = "";
+        }
+
+        var dropdown5 = document.getElementById("Year3");
+        if (dropdown5 != null) {
+
+            dropdown5.value = "";
+        }
+
+        var dropdown6 = document.getElementById("Year4");
+        if (dropdown6 != null) {
+
+            dropdown6.value = "";
+        }
+
+    };
+
+
+</script>
+
+
+
+<div class="row">
+    <div class="col-sm-10">
+
+    </div>
+    <div class="col-sm-1">
+        <button class="btn btn-primary" onclick="resetform();">Reset</button>
+    </div>
+    <div class="col-sm-1">@Html.ActionLink("Cancel", "Index", "CustomerService", null, new { @class = "btn btn-primary" })</div>
+</div>
+<br />
+<br />
+
+
+@using (Html.BeginForm("GiftCardEdit", "CustomerService", FormMethod.Post))
+{
+
+    <div class="row">
+        <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+            <tr style="border-bottom : 1px solid Black; padding-bottom : 10px" class="MetricBold" !important>
+                <td style="width : 100%; text-align : center" colspan="7"><h5 class="closetotable">GIFT CARDS</h5></td>
+            </tr>>
+            <tr style="border-bottom : 1px solid Black; border-top : 1px solid Black; padding-bottom : 10px" class="MetricBold" !important>
+                <th style="width : 20%; border-right : 1px solid black"><h5>Measure</h5></th>
+                <th style="width : 15%; border-right : 1px solid black">
+                    <div style="float: left; width : 50%;">
+                        <select id=@("Month1") name=@("Month1") class=" form-control MetricBold" style="font-size : 14px">
+                            <option value="Month">Month</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                    </div>
+                    <div style="float: left; width : 50%;">
+                        <select id=@("Year1") name=@("Year1") class=" form-control MetricBold" style="font-size : 14px" >
+                            <option value="">Year</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+
+                        </select>
+                    </div>
+
+                </th>
+                <th style="width : 15%; border-right : 1px solid black">
+                    <div style="float: left; width : 50%;">
+                        <select id=@("Month2") name=@("Month2") class=" form-control MetricBold" style="font-size : 14px">
+                            <option value="Month">Month</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                    </div>
+                    <div style="float: left; width : 50%;">
+                        <select id=@("Year2") name=@("Year2") class=" form-control MetricBold" style="font-size : 14px" >
+                            <option value="">Year</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+
+                        </select>
+                    </div>
+                </th>
+                <th style="width : 10%; border-right : 1px solid black"><h5>% Change</h5></th>
+                <th style="width : 15%; border-right : 1px solid black; text-align : center">
+                    <h5>YTD</h5>                      <select id=@("Year3") name=@("Year3") class=" form-control MetricBold" style="font-size : 14px" >
+                        <option value="">Year</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+
+                    </select>
+                </th>
+                <th style="width : 15%; border-right : 1px solid black; text-align : center">
+                    <h5>YTD</h5>   <select id=@("Year4") name=@("Year4") class=" form-control MetricBold" style="font-size : 14px" >
+                        <option value="">Year</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+
+                    </select>
+                </th>
+                <th style="width : 10%; border-right : 1px solid black"><h5>% Change</h5></th>
+            </tr>
+            @foreach (var obj in Model)
+            {
+                i++;
+                <tr class="MetricName" style="font-size : 14px">
+                    @if (i == 1)
+                    {
+                        <td style="width : 20%; border-right : 1px solid black">Website Users</td>
+                    }
+                    else
+                    {
+                        <td style="width : 20%; border-right : 1px solid black">Website Visits</td>
+                    }
+                    <td style="width : 15%; border-right : 1px solid black">
+                        <input type="text" value="@obj.Month1" name=@("Month1" + i) id=@("Month1" + i) class="form-control" style=" width : 100%;font-size : 14px; border : none" />
+                    </td>
+                    <td style="width : 15%; border-right : 1px solid black">
+                        <input type="text" value="@obj.Month2" name=@("Month2" + i) id=@("Month2" + i) class="form-control" style=" width : 100%;font-size : 14px; border : none" />
+                    </td>
+                    <td style="width : 10%; border-right : 1px solid black">
+                        <div style="float: left; width : 90%;">
+                            <input type="text" value=" @obj.Change1" name=@("Change1" + i) id=@("Change1" + i) class="form-control" style=" width : 100%;font-size : 14px; border : none" />
+                        </div><div style="float : left; width : 8%">%</div>
+                    </td>
+                    <td style="width : 15%; border-right : 1px solid black">
+                        <div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;">
+                          <input type="text" value="@obj.Year1" name=@("Year1" + i) id=@("Year1" + i) class="form-control textboxalignright" style=" width : 100%;font-size : 14px; border : none" onblur="focuslost(this)" />
+                        </div>
+
+                       </td>
+                    <td style="width : 15%; border-right : 1px solid black">
+                        <div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;">
+                            <input type="text" value="@obj.Year2" name=@("Year2" + i) id=@("Year2" + i) class="form-control textboxalignright" style=" width : 100%;font-size : 14px; border : none" onblur="focuslost(this)" />
+                        </div>
+                    </td>
+                    <td style="width : 10%; border-right : 1px solid black">
+                        <div style="float: left; width : 90%;">
+                            <input type="text" value=" @obj.Change2" name=@("Change2" + i) id=@("Change2" + i) class="form-control" style=" width : 100%;font-size : 14px; border : none" />
+                        </div><div style="float : left; width : 8%">%</div>
+
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-11"></div><div class="col-sm-1"> <input type="submit" value="Save" class="btn btn-primary" /></div>
+    </div>
+}
+
+
+

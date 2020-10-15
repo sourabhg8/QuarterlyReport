@@ -1,0 +1,56 @@
+﻿@model List<FileInfo>
+@{
+    ViewBag.Title = "Quaterly Report Archives";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 0;
+    int role = Convert.ToInt32(Session["roleid"].ToString());
+}
+
+@if (role == 1)
+{
+<div class="row">
+    <div class="col-sm-10"></div>
+    <div class="col-sm-2">
+        @Html.ActionLink("Archive Current Report", "ArchiveReport", "Home", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+<br />
+}
+
+<div class="row">
+    <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+        <tr style="border-bottom : 2px solid Black; border-top : 0px solid Black; padding-bottom : 10px" !important>
+            <th style="width : 4%"><h5 class="closetotable"></h5></th>
+            <th style="width : 50%; vertical-align : middle" class="MetricBold " !important><h5 class="closetotable">File Name</h5></th>
+            <th style="width : 15% ; vertical-align : middle;" class="MetricBold textaligncenter" !important><h5 class="closetotable">Archive Date</h5></th>
+            <th style="width : 15% ; vertical-align : middle" class="MetricBold textaligncenter" !important><h5 class="closetotable">Archive Time</h5></th>
+            @if (role == 1)
+            {
+            <th colspan="2" style="width : 15%; vertical-align : middle" class="MetricBold textaligncenter" !important><h5 class="closetotable">Action</h5></th>
+            }
+            else
+            {
+            <th colspan="1" style="width : 15%; vertical-align : middle" class="MetricBold textaligncenter" !important><h5 class="closetotable">Action</h5></th>
+            }
+        </tr>
+
+        @foreach (var obj in Model)
+        {
+            i++;
+        <tr class="MetricName" style="font-size : 14px">
+            <td style="width : 4%;">@i</td>
+            <td style="width : 50%;">@obj.Name.Substring(0,26)</td>
+            <td style="width : 15%;" class=" textaligncenter">@obj.Name.Substring(15, 11)</td>
+            <td style="width : 15%" class="textaligncenter">@obj.Name.Substring(27, 8)</td>
+            <td style="" class="textaligncenter">@Html.ActionLink("Download", "DownloadArchive", new { fileName = obj.Name })</td>
+            @if (role == 1)
+            {
+            <td style="" class="textaligncenter">@Html.ActionLink("Delete", "DeleteArchive", new { fileName = obj.Name },
+                                                 new { onclick = "return confirm('Are sure wants to delete the Archive?');" })</td>
+            }
+        </tr>
+        }
+
+    </table>
+    </div>
+

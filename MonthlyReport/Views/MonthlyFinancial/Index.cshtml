@@ -1,0 +1,174 @@
+﻿@model MonthlyReport.Models.Financial
+@{
+    ViewBag.Title = "Financial Overview";
+    Layout = "~/Views/Shared/_LayoutMonthly.cshtml";
+    string rowHeader = "";
+    int role = Convert.ToInt32(Session["roleid"].ToString());
+}
+
+
+<div>
+    @if (role == 1 || role == 2)
+    {
+    <div class="row">
+        <div class="col-md-10">
+
+        </div>
+        <div class="col-md-2">@Html.ActionLink("Edit", "FinancialEdit", "MonthlyFinancial", null, new { @class = "btn btn-primary" })</div>
+    </div>
+    }
+    <div class="row MetricHeading">
+        <div class="col-md-6">
+            <h3 style="text-align : left"><u>Important Updates</u></h3>
+            <div class="form-group">
+                <textarea class=" rounded-bottom MetricName" id="exampleFormControlTextarea2" name="importantUpdate" rows="10" style="width : 80%; font-size : 14px" readonly>@Model.importantUpdate</textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h3 style="text-align : left"><u>Master Plan Updates</u></h3>
+            <div class="form-group">
+                <textarea class="rounded-bottom MetricName" id="exampleFormControlTextarea3" name="masterPlanUpdate" rows="10" style="width : 80%; font-size : 14px" readonly>@Model.masterPlanUpdate</textarea>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <div class="row MetricHeading">
+        <div class="col-sm-6">
+            <h3 style="text-align : left"><u>Financial Overview Consolidated</u></h3>
+        </div>
+    </div>
+    <br />
+    <br />
+    @*<div class="row MetricBold">
+        <div class="col-sm-2">
+
+        </div>
+        <div class="col-sm-3">
+            <h4 style="text-align : left">YEAR-TO-DATE</h4>
+        </div>
+        <div class="col-sm-3">
+            <h4 style="text-align : left">FORECAST</h4>
+        </div>
+        <div class="col-sm-1">
+
+        </div>
+        <div class="col-sm-3">
+            <h4 style="text-align : left">COMMENTS</h4>
+        </div>
+    </div>*@
+</div>
+<div class="row">
+
+    <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+        <tr style="" class="MetricBold">
+            <th style="width: 16%; padding-bottom : 0px; text-align : center"></th>
+            <th style="width: 24%; padding-bottom : 0px; text-align : center" colspan="3"><h4 class="closetotable">YEAR-TO-DATE</h4></th>
+            <th style="width: 24%; padding-bottom : 0px;text-align : center" colspan="3"><h4 class="closetotable">FORECAST</h4></th>
+            <th style="width: 36%;padding-bottom : 0px; text-align : center" colspan="2"><h4 class="closetotable">COMMENTS</h4></th>
+        </tr>
+        <tr style="border-bottom : 1px solid Black; padding-bottom : 0px; white-space : nowrap" !important>
+            <th style="width : 16%; " class="MetricBold textaligncenter" !important></th>
+            <th style="width : 8%;" class="MetricBold textaligncenter" !important><h5 class="closetotable"> Act</h5></th>
+            <th style="width : 8%; " class="MetricBold textaligncenter" !important><h5 class="closetotable">Bud</h5></th>
+            <th style="width : 8%; " class="MetricBold textaligncenter" !important><h5 class="closetotable">Var</h5></th>
+            <th style="width : 8%; " class="MetricBold textaligncenter" !important><h5 class="closetotable">Fcst</h5></th>
+            <th style="width : 8%;" class="MetricBold textaligncenter" !important><h5 class="closetotable">Ann Bud</h5></th>
+            <th style="width : 8%; " class="MetricBold textaligncenter" !important><h5 class="closetotable">Var</h5></th>
+            <th style="width : 18%; " class="MetricBold textaligncenter" !important><h5 class="closetotable">Year-to-Date</h5></th>
+            <th style="width : 18%;" class="MetricBold textaligncenter" !important><h5 class="closetotable">Forecast</h5></th>
+        </tr>
+        @for (int i = 1; i <= 10; i++)
+        {
+            rowHeader = "";
+
+            switch (i)
+            {
+                case 1:
+                    rowHeader = "Revenues";
+                    break;
+                case 2:
+                    rowHeader = "Recoverable Exp.";
+                    break;
+                case 3:
+                    rowHeader = "Deprec Recov Improv.";
+                    break;
+                case 4:
+                    rowHeader = "Recov Property Taxes";
+                    break;
+                case 5:
+                    rowHeader = "NOI";
+                    break;
+                case 6:
+                    rowHeader = "Leasing Costs";
+                    break;
+                case 7:
+                    rowHeader = "Capital";
+                    break;
+                case 8:
+                    rowHeader = "Cash Flow";
+                    break;
+                case 9:
+                    rowHeader = "Recovery Ration CAM & TAX";
+                    break;
+                case 10:
+                    rowHeader = "Overall vacancy ratio";
+                    break;
+
+
+            }
+
+            <tr>
+                <td style="width : 16%; border-right : 1px solid black" class="MetricName" !important>@rowHeader</td>
+                <td style="width : 8% ;border-right : 1px solid black" class="MetricName textboxrightalign" !important>
+                    $ @Model.revenues[i - 1].act
+
+                </td>
+                <td style="width : 8% ;border-right : 1px solid black" class="MetricName textboxrightalign" !important>
+
+                    $ @Model.revenues[i - 1].bud
+
+                </td>
+                <td style="width : 8% ;border-right : 2px solid black" class="MetricName textboxrightalign" !important>
+                    $ @Model.revenues[i - 1].var
+
+                </td>
+                <td style="width : 8% ;border-right : 1px solid black;" class="MetricName textboxrightalign" !important>
+
+                    $ @Model.revenues[i - 1].actfor
+
+                </td>
+                <td style="width : 8% ;border-right : 1px solid black" class="MetricName textboxrightalign" !important>
+
+                    $ @Model.revenues[i - 1].budfor
+
+                </td>
+                <td style="width : 8% ;border-right : 2px solid black" class="MetricName textboxrightalign" !important>
+                    $ @Model.revenues[i - 1].varfor
+
+                </td>
+                <td style="width : 18% ;border-right : 2px solid black" class="MetricName" !important>
+                    @Model.revenues[i - 1].comment
+                </td>
+                <td style="width : 18% " class="MetricName" !important>
+                    @*<textarea class="" name="action" + @i rows="2" style="width : 100%; font-size : 15px" readonly>@Model.revenues[i-1].action</textarea>*@
+                    @Model.revenues[i - 1].action
+                </td>
+            </tr>
+
+        }
+        <tr style=" border-bottom : 2px solid black; border-top : 2px solid black" class="MetricBold" !important>
+            <td style="width : 16%; border-right : 1px solid black"><h5>Adjusted NOI for all Non Cash Items</h5></td>
+            <td style="width : 8% ;border-right : 1px solid black" class="textboxrightalign">$ @Model.revenues[10].act</td>
+            <td style="width : 8% ;border-right : 1px solid black" class="textboxrightalign">$ @Model.revenues[10].bud</td>
+            <td style="width : 8% ;border-right : 2px solid black" class="textboxrightalign">$ @Model.revenues[10].var</td>
+            <td style="width : 8% ;border-right : 1px solid black;" class="textboxrightalign">$ @Model.revenues[10].actfor</td>
+            <td style="width : 8% ;border-right : 1px solid black" class="textboxrightalign">$ @Model.revenues[10].budfor</td>
+            <td style="width : 8% ;border-right : 2px solid black" class="textboxrightalign">$ @Model.revenues[10].varfor</td>
+            <td style="width : 18% ;border-right : 2px solid black">@Model.revenues[10].comment</td>
+            <td style="width : 18% "> @Model.revenues[10].action</td>
+        </tr>
+
+    </table>
+</div>
+

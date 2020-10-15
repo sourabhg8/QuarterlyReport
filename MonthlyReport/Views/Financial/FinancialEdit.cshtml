@@ -1,0 +1,189 @@
+﻿
+@{
+    ViewBag.Title = "Financial Overview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string rowHeader = "";
+}
+
+<script type="text/javascript">
+    function resetform() {
+        $("input:text").val("");
+
+        $("textarea").val("");
+    };
+
+</script>
+
+<div class="row">
+    <div class="col-sm-10">
+
+    </div>
+    <div class="col-sm-1">
+        <button class="btn btn-primary" onclick="resetform();">Reset</button>
+    </div>
+    <div class="col-sm-1">@Html.ActionLink("Cancel", "Index", "Financial", null, new { @class = "btn btn-primary" })</div>
+</div>
+<br />
+
+
+@using (Html.BeginForm("FinancialEdit", "Financial", FormMethod.Post))
+{
+    <div class="row MetricHeading">
+        <div class="col-md-6">
+            <h3 style="text-align : left"><u>Important Updates </u></h3>
+            <div class="form-group">
+                <textarea class=" rounded-bottom MetricName" id="exampleFormControlTextarea2" name="importantUpdate" rows="10" style="width : 80%; font-size : 14px">@Model.importantUpdate</textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h3 style="text-align : left"><u>Master Plan Updates</u></h3>
+            <div class="form-group">
+                <textarea class="rounded-bottom MetricName" id="exampleFormControlTextarea3" name="masterPlanUpdate" rows="10" style="width : 80%; font-size : 14px">@Model.masterPlanUpdate</textarea>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <div class="row MetricHeading">
+        <div class="col-sm-6">
+            <h3 style="text-align : left"><u>Financial Overview Consolidated</u></h3>
+        </div>
+    </div>
+    <br />
+    <br />
+    @*<div class="row MetricBold">
+            <div class="col-sm-2">
+
+            </div>
+            <div class="col-sm-3">
+                <h4 style="text-align : left">YEAR-TO-DATE</h4>
+            </div>
+            <div class="col-sm-3">
+                <h4 style="text-align : left">FORECAST</h4>
+            </div>
+            <div class="col-sm-1">
+
+            </div>
+            <div class="col-sm-3">
+                <h4 style="text-align : left">COMMENTS</h4>
+            </div>
+        </div>*@
+    <div class="row">
+
+        <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+            <tr style="" class="MetricBold">
+                <th style="width: 14%; padding-bottom : 0px; text-align : center"></th>
+                <th style="width: 27%; padding-bottom : 0px; text-align : center" colspan="3"><h4 class="closetotable">YEAR-TO-DATE</h4></th>
+                <th style="width: 27%; padding-bottom : 0px;text-align : center" colspan="3"><h4 class="closetotable">FORECAST</h4></th>
+                <th style="width: 32%;padding-bottom : 0px; text-align : center" colspan="2"><h4 class="closetotable">COMMENTS</h4></th>
+            </tr>
+            <tr style="border-bottom : 1px solid Black; padding-bottom : 0px; white-space : nowrap" !important>
+                <th style="width : 14%; " class="MetricBold textaligncenter" !important></th>
+                <th style="width : 9%;" class="MetricBold textaligncenter" !important><h5 class="closetotable"> Act</h5></th>
+                <th style="width : 9%; " class="MetricBold textaligncenter" !important><h5 class="closetotable">Bud</h5></th>
+                <th style="width : 9%; " class="MetricBold textaligncenter" !important><h5 class="closetotable">Var</h5></th>
+                <th style="width : 9%; " class="MetricBold textaligncenter" !important><h5 class="closetotable">Fcst</h5></th>
+                <th style="width : 9%;" class="MetricBold textaligncenter" !important><h5 class="closetotable">Ann Bud</h5></th>
+                <th style="width : 9%; " class="MetricBold textaligncenter" !important><h5 class="closetotable">Var</h5></th>
+                <th style="width : 16%; " class="MetricBold textaligncenter" !important><h5 class="closetotable">Year-to-Date</h5></th>
+                <th style="width : 16%;" class="MetricBold textaligncenter" !important><h5 class="closetotable">Forecast</h5></th>
+            </tr>
+            @for (int i = 1; i <= 10; i++)
+            {
+                rowHeader = "";
+
+                switch (i)
+                {
+                    case 1:
+                        rowHeader = "Revenues";
+                        break;
+                    case 2:
+                        rowHeader = "Recoverable Exp.";
+                        break;
+                    case 3:
+                        rowHeader = "Deprec Recov Improv.";
+                        break;
+                    case 4:
+                        rowHeader = "Recov Property Taxes";
+                        break;
+                    case 5:
+                        rowHeader = "NOI";
+                        break;
+                    case 6:
+                        rowHeader = "Leasing Costs";
+                        break;
+                    case 7:
+                        rowHeader = "Capital";
+                        break;
+                    case 8:
+                        rowHeader = "Cash Flow";
+                        break;
+                    case 9:
+                        rowHeader = "Recovery Ration CAM & TAX";
+                        break;
+                    case 10:
+                        rowHeader = "Overall vacancy ratio";
+                        break;
+
+                }
+
+                <tr class="MetricName" important>
+                    <td style="width : 14%; border-right : 1px solid black">@rowHeader</td>
+                    <td style="width : 9% ;border-right : 1px solid black">
+                        <div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;">
+                            <input type="text" value="@Model.revenues[i - 1].act" name=@("act" + i.ToString()) id=@("act" + i.ToString()) class="form-control textboxrightalign" style=" width : 100%;font-size : 15px" onblur="focuslost(this)" />
+                        </div>
+                    </td>
+                    <td style="width : 9% ;border-right : 1px solid black">
+                        <div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;">
+                            <input type="text" value="@Model.revenues[i - 1].bud" name=@("bud" + i.ToString()) id=@("bud" + i.ToString()) class="form-control textboxrightalign" style=" width : 100%;font-size : 15px" onblur="focuslost(this)" />
+                        </div>
+                    </td>
+                    <td style="width : 9% ;border-right : 2px solid black">
+                        <div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;">
+                            <input type="text" value="@Model.revenues[i - 1].var" name=@("var" + i.ToString()) id=@("var" + i.ToString()) class="form-control textboxrightalign" style=" width : 100%;font-size : 15px" onblur="focuslost(this)" />
+                        </div>
+                    </td>
+                    <td style="width : 9% ;border-right : 1px solid black;">
+                        <div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;">
+                            <input type="text" value="@Model.revenues[i - 1].actfor" name=@("actfor" + i.ToString()) id=@("actfor" + i.ToString()) class="form-control textboxrightalign" style=" width : 100%;font-size : 15px" onblur="focuslost(this)" />
+                        </div>
+                    </td>
+                    <td style="width : 9% ;border-right : 1px solid black">
+                        <div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;">
+                            <input type="text" value="@Model.revenues[i - 1].budfor" name=@("budfor" + i.ToString()) id=@("budfor" + i.ToString()) class="form-control textboxrightalign" style=" width : 100%;font-size : 15px" onblur="focuslost(this)" />
+                        </div>
+                    </td>
+                    <td style="width : 9% ;border-right : 2px solid black">
+                        <div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;">
+                            <input type="text" value="@Model.revenues[i - 1].varfor" name=@("varfor" + i.ToString()) id=@("varfor" + i.ToString()) class="form-control textboxrightalign" style=" width : 100%;font-size : 15px" onblur="focuslost(this)" />
+                        </div>
+                    </td>
+                    <td style="width : 16% ;border-right : 2px solid black">
+                        <textarea name=@("comment" + i.ToString()) id=@("comment" + i.ToString()) rows="2" style="width : 100%; border : none; font-size : 15px">@Model.revenues[i - 1].comment</textarea>
+                    </td>
+                    <td style="width : 16% ">
+                        <textarea class="" name=@("action" + i.ToString()) id=@("action" + i.ToString()) rows="2" style="width : 100%; border : none;font-size : 15px">@Model.revenues[i - 1].action</textarea>
+                    </td>
+                </tr>
+
+            }
+            @{ int j = 11;
+                <tr style=" border-bottom : 2px solid black; border-top : 2px solid black" class="MetricBold" important>
+                    <td style="width : 14%; border-right : 1px solid black"><h5>Adjusted NOI for all Non Cash Items</h5></td>
+                    <td style="width : 9% ;border-right : 1px solid black"><div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;"><input type="text" class="form-control textboxrightalign" style=" width : 100%;font-size : 15px" value="@Model.revenues[j - 1].act" name=@("act" + j.ToString()) id=@("act" + j.ToString()) onblur="focuslost(this)" /></div></td>
+                    <td style="width : 9% ;border-right : 1px solid black"><div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;"><input type="text" class="form-control textboxrightalign" style=" width : 100%;font-size : 15px" value="@Model.revenues[j - 1].bud" name=@("bud" + j.ToString()) id=@("bud" + j.ToString()) onblur="focuslost(this)" /></div></td>
+                    <td style="width : 9% ;border-right : 2px solid black"><div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;"><input type="text" class="form-control textboxrightalign" style=" width : 100%;font-size : 15px" value="@Model.revenues[j - 1].var" name=@("var" + j.ToString()) id=@("var" + j.ToString()) onblur="focuslost(this)" /></div></td>
+                    <td style="width : 9% ;border-right : 1px solid black;"><div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;"><input type="text" class="form-control textboxrightalign" style=" width : 100%;font-size : 15px" value="@Model.revenues[j - 1].actfor" name=@("actfor" + j.ToString()) id=@("actfor" + j.ToString()) onblur="focuslost(this)" /></div></td>
+                    <td style="width : 9% ;border-right : 1px solid black"><div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;"><input type="text" class="form-control textboxrightalign" style=" width : 100%;font-size : 15px" value="@Model.revenues[j - 1].budfor" name=@("budfor" + j.ToString()) id=@("budfor" + j.ToString()) onblur="focuslost(this)" /></div></td>
+                    <td style="width : 9% ;border-right : 2px solid black"><div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;"><input type="text" class="form-control textboxrightalign" style=" width : 100%;font-size : 15px" value="@Model.revenues[j - 1].varfor" name=@("varfor" + j.ToString()) id=@("varfor" + j.ToString()) onblur="focuslost(this)" /></div></td>
+                    <td style="width : 16% ;border-right : 2px solid black"> <textarea class=" " name=@("comment" + j.ToString()) id=@("comment" + j.ToString()) rows="2" style="width : 100%;border : none; font-size : 15px">@Model.revenues[j - 1].comment</textarea></td>
+                    <td style="width : 16% "> <textarea name=@("action" + j.ToString()) id=@("action" + j.ToString()) class="" rows="2" style="width : 100%; border : none; font-size : 15px">@Model.revenues[j - 1].action</textarea></td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-sm-10"></div><div class="col-sm-2"> <input type="submit" value="Save" class="btn btn-primary" /></div>
+    </div>
+}

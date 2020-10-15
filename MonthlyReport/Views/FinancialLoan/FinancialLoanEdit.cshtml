@@ -1,0 +1,140 @@
+﻿@model List<MonthlyReport.Models.FinancialLoan>
+@{
+    ViewBag.Title = "Financials";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 0;
+    string rowHeader = string.Empty;
+}
+<script type="text/javascript">
+
+    function resetform() {
+        $("input:text").val("");
+      
+        $("textarea").val("");
+    };
+
+</script>
+
+<div class="row">
+    <div class=" col-sm-4 MetricBold">
+        <h5><strong>FINANCIAL LOANS</strong></h5>
+    </div>
+    <div class="col-sm-6">
+
+    </div>
+    <div class="col-sm-1">
+       <button class="btn btn-primary" onclick="resetform();">Reset</button>
+    </div>
+    <div class="col-sm-1">
+        @Html.ActionLink("Cancel", "Index", "FinancialLoan", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+<br />
+@using (Html.BeginForm("FinancialLoanEdit", "FinancialLoan", FormMethod.Post))
+{
+
+    <div class="row">
+        <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+            <tr style="border-bottom : 2px solid Black; border-top : 2px solid Black; padding-bottom : 10px; text-align : center" class="MetricBold"  important !important>
+                <th style="width : 20%; border-right : 1px solid black; text-align : center; vertical-align : middle"><h5 class="closetotable">Phase</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; vertical-align : middle"><h5 class="closetotable">Lender</h5></th>
+                <th style="width : 20%; border-right : 1px solid black; vertical-align : middle">
+                    <h5 class="closetotable">Loan Balance (M$)</h5>
+                    <input type="text" value="@Model[0].date" name=@("date" ) id=@("date") class="form-control" style=" width : 100%;text-align : center; font-size : 13px; border : none" />
+                </th>
+                <th style="width : 10%; border-right : 1px solid black; vertical-align : middle"><h5 class="closetotable">Rate</h5></th>
+                <th style="width : 20%; border-right : 1px solid black; vertical-align : middle"><h5 class="closetotable">Term </h5></th>
+                <th style="width : 20%;vertical-align : middle"><h5 class="closetotable">Expiry Term</h5></th>
+            </tr>
+            @foreach (var obj in Model)
+            {
+                i++;
+
+                switch (i)
+                {
+                    case 1:
+                        rowHeader = "I-II";
+                        break;
+                    case 2:
+                        rowHeader = "I-II";
+                        break;
+                    case 3:
+                        rowHeader = "I-II";
+                        break;
+                    case 4:
+                        rowHeader = "II";
+                        break;
+                    case 5:
+                        rowHeader = "III";
+                        break;
+                    case 6:
+                        rowHeader = "III-S2";
+                        break;
+                    case 7:
+                        rowHeader = "III-S11";
+                        break;
+                    case 8:
+                        rowHeader = "IV - VI";
+                        break;
+                    case 9:
+                        rowHeader = "IV - VI (5C&7A)";
+                        break;
+                    case 10:
+                        rowHeader = "Total";
+                        break;
+                }
+
+                if (i == Model.Count())
+                {
+                    <tr style="border-bottom : 1px solid Black; border-top : 1px solid black;" class="MetricName"   !important>
+                        <td style="width : 20%; border-right : 1px solid black; text-align : center; font-size : 16px;" class="MetricBold"  >@rowHeader</td>
+                        <td style="width : 10%; border-right : 1px solid black">
+                            <input type="text" value="@obj.Lender" name=@("Lender" + i) id=@("Lender" + i) class="form-control" style=" width : 100%; font-size : 14px; border : none" />
+                        </td>
+                        <td style="width : 20%; border-right : 1px solid black">
+                            <input type="text" value="@obj.Loanbalance" name=@("Loanbalance" + i) id=@("Loanbalance" + i) class="form-control" style=" width : 100%;font-size : 14px; text-align : right; border : none" />
+                        </td>
+                        <td style="width : 10%; border-right : 1px solid black">
+                            <input type="text" value="@obj.Rate" name=@("Rate" + i) id=@("Rate" + i) class="form-control" style=" width : 100%;font-size : 14px; text-align : right; border : none" />
+                        </td>
+                        <td style="width : 20%; border-right : 1px solid black">
+                            <input type="text" value="@obj.Term" name=@("Term" + i) id=@("Term" + i) class="form-control" style=" width : 100%;font-size : 14px; border : none" />
+                        </td>
+                        <td style="width : 20%;">
+                            <input type="text" value="@obj.Expiryterm" name=@("Expiryterm" + i) id=@("Expiryterm" + i) class="form-control" style=" width : 100%;font-size : 14px; border : none" />
+                        </td>
+
+                    </tr>
+                }
+                else
+                {
+                    <tr class="MetricName" !important>
+                        <td style="width : 20%; border-right : 1px solid black; text-align : center; font-size: 16px;" class="MetricBold">@rowHeader</td>
+                        <td style="width : 10%; border-right : 1px solid black">
+                            <input type="text" value="@obj.Lender" name=@("Lender" + i) id=@("Lender" + i) class="form-control" style=" width : 100%;font-size : 14px; border : none" />
+                        </td>
+                        <td style="width : 20%; border-right : 1px solid black">
+                            <input type="text" value="@obj.Loanbalance" name=@("Loanbalance" + i) id=@("Loanbalance" + i) class="form-control" style="width : 100%;font-size : 14px; text-align : right; border : none" />
+                        </td>
+                        <td style="width : 10%; border-right : 1px solid black">
+                            <input type="text" value="@obj.Rate" name=@("Rate" + i) id=@("Rate" + i) class="form-control" style="width : 100%; font-size : 14px; text-align : right; border : none" />
+                        </td>
+                        <td style="width : 20%; border-right : 1px solid black">
+                            <input type="text" value="@obj.Term" name=@("Term" + i) id=@("Term" + i) class="form-control" style=" width : 100%; font-size : 14px; border : none" />
+                        </td>
+                        <td style="width : 20%;">
+                            <input type="text" value="@obj.Expiryterm" name=@("Expiryterm" + i) id=@("Expiryterm" + i) class="form-control" style=" width : 100%;font-size : 14px; border : none" />
+                        </td>
+
+                    </tr>
+                }
+            }
+
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-sm-11"></div><div class="col-sm-1"> <input type="submit" value="Save" class="btn btn-primary" /></div>
+    </div>
+}
+
+

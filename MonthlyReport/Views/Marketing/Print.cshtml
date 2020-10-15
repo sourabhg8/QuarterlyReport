@@ -1,0 +1,178 @@
+﻿
+@model List<MonthlyReport.Models.Marketing>
+@{
+}
+
+
+
+<p class="page">
+
+    <h2 style="font-family : Zahrah; font-weight : bold; font-style : italic"><u>Events/Activations</u></h2>
+    <br />
+
+    <div style="width : 100%;height :450px;">
+        <div style="width : 50%; float : left; text-align :left;">
+            @if (ViewBag.extension1 == "none")
+            {
+                <div style=" border : 1px solid black; height : 400px; width : 90%;position :relative">
+                    <img src="Uploads/default.jpg" class="img-rounded" alt="Cinque Terre" height="40" width="40" style="position :absolute; top :170; left :200 ; margin :auto;">
+                </div>
+            }
+            else
+            {
+
+                <img src="@("Uploads/First/NewFile" + ViewBag.extension1 + "?v=2")" class="img-rounded" alt="Cinque Terre" height="400" width="90%" style="border : 1px solid black;">
+
+            }
+        </div>
+        <div style="width : 50%; float : left; text-align : right">
+            @if (ViewBag.extension2 == "none")
+            {
+                <div style=" border : 1px solid black; height : 400px; width : 90%;position :relative">
+                    <img src="Uploads/default.jpg" class="img-rounded" alt="Cinque Terre" height="40" width="40" style="position :absolute; top :170; left :200 ; margin :auto;">
+                </div>
+            }
+            else
+            {
+                <img src="@("Uploads/Second/NewFile" + ViewBag.extension2 + "?v=3")" class="img-rounded" alt="Cinque Terre" height="400" width="90%" style="border : 1px solid black;">
+            }
+        </div>
+        <br />
+        <br />
+    </div>
+
+
+  
+
+    <div style="width : 100%">
+        <div style="width : 50%; float : left;">
+            <table class=" table" style="width:90% ; text-align :center; border : none; border-collapse : collapse" !important>
+                <tr>
+                    <th style="width : 25%; border-right : 1px solid black;"><h5 class="closetotable">@Model[0].Type</h5></th>
+                    <th style="width : 75%; text-align :left; padding-left : 10px;" colspan="3"><h5 class="closetotable">@Model[0].TypeValue </h5></th>
+                </tr>
+                <tr style=" font-family : Metric ;font-size: 12px" class="MetricName" !important>
+                    <td style="width : 25%; border-top : 1px solid Black; border-right : 1px solid black">KPI</td>
+                    <td style="width : 25%; border-top : 1px solid Black; ">@Model[0].Kpi1</td>
+                    <td style="width : 25%; border-top : 1px solid Black; ">@Model[0].Kpi2</td>
+                    <td style="width : 25%; border-top : 1px solid Black; ">@Model[0].Kpi3</td>
+                </tr>
+                <tr style="font-family : Metric; font-size: 12px" !important>
+                    <td style="width : 25%; border-right : 1px solid black">Result</td>
+                    <td style="width : 25%; ">@Model[0].Result1</td>
+                    <td style="width : 25%; ">@Model[0].Result2</td>
+                    <td style="width : 25%; ">@Model[0].Result3</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div style="width : 50%; float : left;">
+            <table class=" table" style="width:90% ; text-align : center;border : none; border-collapse : collapse" !important>
+                <tr>
+                    <th style="width : 25%; border-right : 1px solid black; "><h5 class="closetotable">@Model[1].Type</h5></th>
+                    <th style="width : 75%; text-align :left;padding-left : 10px;" colspan="3"><h5 class="closetotable">@Model[1].TypeValue</h5></th>
+                </tr>
+                <tr style="font-family : Metric; font-size : 12px" !important>
+                    <td style="width : 25%;border-top : 1px solid Black; border-right : 1px solid black">KPI</td>
+                    <td style="width : 25%; border-top : 1px solid Black; ">@Model[1].Kpi1</td>
+                    <td style="width : 25%; border-top : 1px solid Black; ">@Model[1].Kpi2</td>
+                    <td style="width : 25%; border-top : 1px solid Black; ">@Model[1].Kpi3</td>
+                </tr>
+                <tr style="font-family :Metric; font-size : 12px;" !important>
+                    <td style="width : 25%; border-right : 1px solid black;">Result</td>
+                    <td style="width : 25%; ">@Model[1].Result1</td>
+                    <td style="width : 25%; ">@Model[1].Result2</td>
+                    <td style="width : 25%; ">@Model[1].Result3</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</p>
+
+
+
+<p class="page">
+
+    <h2 style="font-family : Zahrah; font-weight : bold; font-style : italic"><u>Events/Activations</u></h2>
+    <br />
+
+    <div style="width : 100%;height :450px;">
+        <div style="width : 50%; float : left; text-align :left;">
+            @if (ViewBag.extension3 == "none")
+            {
+                <div style=" border : 1px solid black; height : 400px; width : 90%;position :relative">
+                    <img src="Uploads/default.jpg" class="img-rounded" alt="Cinque Terre" height="40" width="40" style="position :absolute; top :170; left :200 ; margin :auto;">
+                </div>
+            }
+            else
+            {
+
+                <img src="@("Uploads/Third/NewFile" + ViewBag.extension3 + "?v=2")" class="img-rounded" alt="Cinque Terre" height="400" width="90%" style="border : 1px solid black;">
+
+            }
+        </div>
+        <div style="width : 50%; float : left; text-align : right">
+            @if (ViewBag.extension4 == "none")
+            {
+                <div style=" border : 1px solid black; height : 400px; width : 90%;position :relative">
+                    <img src="Uploads/default.jpg" class="img-rounded" alt="Cinque Terre" height="40" width="40" style="position :absolute; top :170; left :200 ; margin :auto;">
+                </div>
+            }
+            else
+            {
+                <img src="@("Uploads/Fourth/NewFile" + ViewBag.extension4 + "?v=3")" class="img-rounded" alt="Cinque Terre" height="400" width="90%" style="border : 1px solid black;">
+            }
+        </div>
+        <br />
+        <br />
+    </div>
+
+
+
+
+    <div style="width : 100%">
+        <div style="width : 50%; float : left;">
+            <table class=" table" style="width:90% ; text-align :center; border : none; border-collapse : collapse" !important>
+                <tr>
+                    <th style="width : 25%; border-right : 1px solid black;"><h5 class="closetotable">@Model[2].Type</h5></th>
+                    <th style="width : 75%; text-align :left; padding-left : 10px;" colspan="3"><h5 class="closetotable">@Model[2].TypeValue </h5></th>
+                </tr>
+                <tr style=" font-family : Metric ;font-size: 12px" class="MetricName" !important>
+                    <td style="width : 25%; border-top : 1px solid Black; border-right : 1px solid black">KPI</td>
+                    <td style="width : 25%; border-top : 1px solid Black; ">@Model[2].Kpi1</td>
+                    <td style="width : 25%; border-top : 1px solid Black; ">@Model[2].Kpi2</td>
+                    <td style="width : 25%; border-top : 1px solid Black; ">@Model[2].Kpi3</td>
+                </tr>
+                <tr style="font-family : Metric; font-size: 12px" !important>
+                    <td style="width : 25%; border-right : 1px solid black">Result</td>
+                    <td style="width : 25%; ">@Model[2].Result1</td>
+                    <td style="width : 25%; ">@Model[2].Result2</td>
+                    <td style="width : 25%; ">@Model[2].Result3</td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="width : 50%; float : left;">
+            <table class=" table" style="width:90% ; text-align : center;border : none; border-collapse : collapse" !important>
+                <tr>
+                    <th style="width : 25%; border-right : 1px solid black; "><h5 class="closetotable">@Model[3].Type</h5></th>
+                    <th style="width : 75%; text-align :left;padding-left : 10px;" colspan="3"><h5 class="closetotable">@Model[3].TypeValue</h5></th>
+                </tr>
+                <tr style="font-family : Metric; font-size : 12px" !important>
+                    <td style="width : 25%;border-top : 1px solid Black; border-right : 1px solid black">KPI</td>
+                    <td style="width : 25%; border-top : 1px solid Black; ">@Model[3].Kpi1</td>
+                    <td style="width : 25%; border-top : 1px solid Black; ">@Model[3].Kpi2</td>
+                    <td style="width : 25%; border-top : 1px solid Black; ">@Model[3].Kpi3</td>
+                </tr>
+                <tr style="font-family :Metric; font-size : 12px;" !important>
+                    <td style="width : 25%; border-right : 1px solid black;">Result</td>
+                    <td style="width : 25%; ">@Model[3].Result1</td>
+                    <td style="width : 25%; ">@Model[3].Result2</td>
+                    <td style="width : 25%; ">@Model[3].Result3</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</p>

@@ -1,0 +1,219 @@
+﻿@model IEnumerable<MonthlyReport.Models.TenantClosure>
+@{
+    ViewBag.Title = "Tenant Closure";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 0;
+}
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var mod = @Html.Raw(Json.Encode(Model));
+       //alert(JSON.stringify(mod));
+        for (var j = 1; j < 10; j++) {
+            var dropdown = document.getElementById("Sector" + j);
+            if (dropdown != null) {
+              dropdown.value = mod[j - 1].Sector;
+            }
+        }
+        for (var k = 1; k < 10; k++) {
+            var dropdown = document.getElementById("Occupancy" + k);
+            if (dropdown != null) {
+                dropdown.value = mod[k - 1].Occupancy;
+            }
+        }
+        for (var l = 1; l < 10; l++) {
+            var dropdown = document.getElementById("CoTenancyRisk" + l);
+            if (dropdown != null) {
+                dropdown.value = mod[l - 1].CoTenancyRisk;
+            }
+        }
+        for (var m = 1; m < 10; m++) {
+            var dropdown = document.getElementById("ReasonOfClosure" + l);
+            if (dropdown != null) {
+                dropdown.value = mod[m - 1].ReasonOfClosure;
+            }
+        }
+    });
+
+    function resetform() {
+        $("input:text").val("");
+
+        $("textarea").val("");
+        for (var j = 1; j < 10; j++) {
+            var dropdown = document.getElementById("Sector" + j);
+            if (dropdown != null) {
+                dropdown.value = "Sector";
+            }
+        }
+        for (var k = 1; k < 10; k++) {
+            var dropdown = document.getElementById("Occupancy" + k);
+            if (dropdown != null) {
+                dropdown.value = "Select";
+            }
+        }
+        for (var l = 1; l < 10; l++) {
+            var dropdown = document.getElementById("CoTenancyRisk" + l);
+            if (dropdown != null) {
+                dropdown.value = "Select";
+            }
+        }
+        for (var m = 1; m < 10; m++) {
+            var dropdown = document.getElementById("ReasonOfClosure" + l);
+            if (dropdown != null) {
+                dropdown.value = "Select";
+            }
+        }
+    };
+
+
+</script>
+
+
+<div class="row">
+    <div class="col-sm-10">
+
+    </div>
+    <div class="col-sm-1">
+        <button class="btn btn-primary" onclick="resetform();">Reset</button>
+    </div>
+    <div class="col-sm-1">
+        @Html.ActionLink("Cancel", "Index", "Leasing", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+
+@using (Html.BeginForm("TenantsClosureEdit", "Leasing", FormMethod.Post))
+{
+
+    <div class="row">
+        <div class=" col-sm-6">
+            <h5><strong>TENANT CLOSURE</strong></h5>
+        </div>
+        <div class=" col-sm-2">
+            @*<select id="month" name="month" class=" form-control">
+                    <option value="">--Select--</option>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="Decemeber">Decemeber</option>
+
+                </select>*@
+        </div>
+        </div>
+    <br />
+
+    <div class="row">
+        <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+            <tr style="border-bottom : 2px solid Black; border-top : 2px solid Black; padding-bottom : 10px" class="MetricBold" !important>
+                <th style="width : 12%; border-right : 1px solid black; vertical-align : middle"><h5 class="closetotable">Tenant</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Sector</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">GLA</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Date Of <br /> Closure</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Reason Of <br />Closure</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">AR</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Occupancy</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Co-Tenanacy<br />Risk</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">TI<br />Unamortized</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">LLW<br />Unamortized</h5></th>
+                <th style="width : 16%; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Comments and special provisions</h5></th>
+            </tr>
+            @foreach (var obj in Model)
+            {
+                i++;
+                <tr style="border-bottom : 1px solid Black;" class="MetricName" !important>
+                    <th style="width : 12%; border-right : 1px solid black">
+                        <input type="text" value="@obj.Tenant" name=@("Tenant" + i) id=@("Tenant" + i) class="form-control" style=" width : 100%;font-size : 14px; border : none" />
+                    </th>
+                    <th style="width : 8%; border-right : 1px solid black">
+                        <select id=@("Sector" + i) name=@("Sector" + i) class=" form-control" style="font-size : 14px">
+                            <option value="Convenience">Convenience</option>
+                            <option value="Lifestyle">Lifestyle</option>
+                            <option value="Power Center I">Power Center I</option>
+                            <option value="Power Center II">Power Center II</option>
+                            <option value="Phase IV & V">Phase IV & V</option>
+                            <option value="Phase VI & VII">Phase VI & VII</option>
+                            <option value="Square">Square</option>
+                            <option value="Sector">Sector</option>
+
+                        </select>
+                    </th>
+                    <th style="width : 8%; border-right : 1px solid black">
+                        <input type="text" value="@obj.Gla" name=@("Gla" + i) id=@("Gla" + i) class="form-control" style=" width : 100%;font-size : 14px; border : none" />
+                    </th>
+                    <th style="width : 8%; border-right : 1px solid black">
+
+                        <input type="text" value="@obj.DateOfClosure" name=@("DateOfClosure" + i) id=@("DateOfClosure" + i) class="form-control" style=" width : 100%;font-size : 14px; border : none" />
+
+                    </th>
+
+                    <th style="width : 8%; border-right : 1px solid black">
+
+                        @*<input type="text" value="@obj.ReasonOfClosure" name=@("ReasonOfClosure" + i) id=@("ReasonOfClosure" + i) class="form-control" style=" width : 100%;font-size : 14px; border : none" />*@
+                        <select id=@("ReasonOfClosure" + i) name=@("ReasonOfClosure" + i) class=" form-control" style="font-size : 14px">
+                            <option value="Select">Select</option>
+                            <option value="End of Lease">End of Lease</option>
+                            <option value="Bankruptcy">Bankruptcy</option>
+                            <option value="Surrendered">Surrendered</option>
+                            <option value="Other">Other</option>
+
+
+                        </select>
+                    </th>
+
+                    <th style="width : 8%; border-right : 1px solid black">
+                        <div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;">
+                            <input type="text" value="@obj.Ar" name=@("Ar" + i) id=@("Ar" + i) class="form-control textboxrightalign" style=" width : 100%;font-size : 14px; border : none" onblur="focuslost(this)" />
+                        </div>
+                    </th>
+
+                    <th style="width : 8%; border-right : 1px solid black">
+                        <select id=@("Occupancy" + i) name=@("Occupancy" + i) class=" form-control" style="font-size : 14px">
+                            <option value="Select">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </th>
+                    <th style="width : 8%; border-right : 1px solid black">
+                        <select id=@("CoTenancyRisk" + i) name=@("CoTenancyRisk" + i) class=" form-control" style="font-size : 14px">
+                            <option value="Select">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </th>
+
+                    <th style="width : 8%; border-right : 1px solid black">
+                        <div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;">
+                            <input type="text" value="@obj.TI" name=@("TI" + i) id=@("TI" + i) class="form-control textboxrightalign" style=" width : 100%;font-size : 14px; border : none" onblur="focuslost(this)" />
+                        </div>
+                    </th>
+                    <th style="width : 8%; border-right : 1px solid black">
+                        <div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;">
+                            <input type="text" value="@obj.LLW" name=@("LLW" + i) id=@("LLW" + i) class="form-control textboxrightalign" style=" width : 100%;font-size : 14px; border : none" onblur="focuslost(this)" />
+                        </div>
+                    </th>
+                    <th style="width : 16%; ">
+                        <textarea name=@("comment" + i) rows="3" style="width : 100%; font-size : 14px; border : none" class="">@obj.Comments</textarea>
+                    </th>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-sm-11"></div><div class="col-sm-1"> <input type="submit" value="Save" class="btn btn-primary" /></div>
+    </div>
+
+
+
+
+}

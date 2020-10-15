@@ -1,0 +1,253 @@
+﻿@model List<MonthlyReport.Models.Operations>
+@{
+    ViewBag.Title = "Operations & Security";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 0;
+    int k;
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var mod = @Html.Raw(Json.Encode(Model));
+
+        for (var j = 1; j < 10; j++) {
+            var dropdown = document.getElementById("Completion" + j);
+            if (dropdown != null) {
+                dropdown.value = mod[j - 1].CompletionDate;
+            }
+        }
+        for (var j = 1; j < 10; j++) {
+            var dropdown1 = document.getElementById("ForCompletion" + j);
+            if (dropdown1 != null) {
+                dropdown1.value = mod[j - 1].ForecastCompletionDate;
+            }
+        }
+
+    });
+    
+    function resetform() {
+        $("input:text").val("");
+
+        $("textarea").val("");
+        $("#Budget1").val("486,001");
+        $("#Budget2").val("175,000");
+        $("#Budget3").val("100,000");
+        $("#Budget4").val("637,470");
+        $("#Budget5").val("230,000");
+        $("#Budget6").val("140,000");
+        $("#Budget7").val("140,000");
+        $("#Budget8").val("170,000");
+    };
+
+
+
+</script>
+
+<div class="row">
+    <div class="col-sm-10">
+
+    </div>
+    <div class="col-sm-1">
+        <button class="btn btn-primary" onclick="resetform();">Reset</button>
+    </div>
+    <div class="col-sm-1">@Html.ActionLink("Cancel", "Index", "Operations", null, new { @class = "btn btn-primary" })</div>
+</div>
+<br />
+<br />
+
+<div class="row MetricBold">
+    <div class="col-md-6" style="text-align : left">
+        <h3>CAPEX</h3>
+    </div>
+    <div class="col-md-6" style="text-align : left">
+        <h3></h3>
+    </div>
+</div>
+
+@using (Html.BeginForm("OperationsEdit", "Operations", FormMethod.Post))
+{
+    <div class="row">
+        <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+            <tr style="padding-bottom : 10px" class="MetricBold" !important>
+                <th style="width : 20%; border-right : 1px solid black; vertical-align: middle; padding-bottom : 5px; padding-top :0px"><h5 class="closetotable">Project</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; vertical-align :middle; padding-bottom : 5px; padding-top :0px" class="textaligncenter"><h5 class="closetotable">Completion<br />Date</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; vertical-align :middle; padding-bottom : 5px; padding-top :0px" class="textaligncenter"><h5 class="closetotable">Forecast <br />Completion <br />Date</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; vertical-align :middle; padding-bottom : 5px; padding-top :0px" class="textaligncenter"><h5 class="closetotable">Budget </h5></th>
+                <th style="width : 10%; border-right : 1px solid black; vertical-align :middle; padding-bottom : 5px; padding-top :0px" class="textaligncenter"><h5 class="closetotable">Commit<br />to Date</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; vertical-align :middle; padding-bottom : 5px; padding-top :0px" class="textaligncenter"><h5 class="closetotable">Co-owners <br />Approved<br />Amount</h5></th>
+                <th style="width : 30%; vertical-align :middle; padding-bottom : 5px; padding-top :0px"><h5 class="closetotable">Comments</h5></th>
+            </tr>
+            <tr><td colspan="7"></td></tr>
+            <tr class="MetricMis">
+                <td colspan="7" style="border : 2px solid black; text-align : center"><h5>Recoverable</h5></td>
+            </tr>
+            @foreach (var obj in Model)
+            {
+
+                if (obj.IsRecoverable)
+                {
+                    i++;
+                    <tr class="MetricName">
+                        <td style="width : 20%; border-right : 1px solid black; font-size : 14px;">
+                            @obj.Project
+                            <input type="hidden" value="@obj.Project" name=@("project" + i) />
+                            @*<input type="text" style="font-size : 14px" name=@("project" + i) id=@("project" + i) value="@obj.Project" class="form-control" />*@
+                        </td>
+                        <td style="width : 10%; border-right : 1px solid black">
+                            @*<select id=@("Completion" + i) name=@("Completion" + i) class=" form-control" style="font-size : 14px">
+                            <option value="">--Select--</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="Decemeber">Decemeber</option>
+
+                        </select>*@
+                            <input type="hidden" value="@obj.CompletionDate" name=@("Completion" + i) />
+                            @obj.CompletionDate
+
+                        </td>
+                        @*<td style="width : 10%; border-right : 1px solid black">
+                        <select id=@("ForCompletion" + i) name=@("ForCompletion" + i) class=" form-control" style="font-size : 14px">
+                            <option value="">--Select--</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="Decemeber">Decemeber</option>
+
+                        </select>
+                    </td>*@
+                        <td style="width : 10% ;border-right : 1px solid black;">
+
+                            <input type="text" value="@obj.ForecastCompletionDate" name=@("ForCompletion" + i) id=@("ForCompletion" + i) class="form-control" style=" width : 100%;  font-size : 14px; border : none" />
+
+                        </td>
+                        <td style="width : 10% ;border-right : 1px solid black;">
+                            <div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;">
+                                <input type="text" value="@obj.Budget" name=@("Budget" + i) id=@("Budget" + i) class="form-control textboxrightalign" style=" width : 100%; font-size : 14px; border : none" onblur="focuslost(this)" readonly />
+                            </div>
+                        </td>
+                        <td style="width : 10% ;border-right : 1px solid black;">
+
+                            <input type="text" value="@obj.CommitToDate" name=@("commit" + i) id=@("commmit" + i) class=" form-control textboxrightalign" style=" width : 100%; font-size : 14px;  border : none" />
+
+                        </td>
+                        <td style="width : 10% ;border-right : 1px solid black;">
+
+                            <input type="text" value="@obj.ApprovedAmount" name=@("approved" + i) id=@("approved" + i) class="form-control textboxrightalign" style=" width : 100%; font-size : 14px;  border : none" />
+
+                        </td>
+                        <td style="width : 30%;" class="form-control-md">
+                            <textarea name=@("Comments" + i) rows="3" style="width : 100%; border : none; font-size : 14px">@obj.Comments</textarea>
+                            <input type="hidden" name=@("hide" +i) value="@obj.IsRecoverable" />
+                        </td>
+                    </tr>
+
+                }
+            }
+
+            <tr><td colspan="7"></td></tr>
+            <tr class="MetricMis">
+                <td colspan="7" style="border : 2px solid black; text-align : center"><h5>Non Recoverable </h5></td>
+            </tr>
+            @foreach (var obj in Model)
+            {
+                if (!obj.IsRecoverable)
+                {
+                    i++;
+                    <tr class="MetricName">
+                        <td style="width : 20%; border-right : 1px solid black; font-size : 14px;">
+                            @*<input type="text" style="font-size : 14px;" name=@("project" + i) id=@("project" + i) value="@obj.Project" class="form-control" />*@
+                            @obj.Project
+                            <input type="hidden" value="@obj.Project" name=@("project" + i) />
+                        </td>
+                        <td style="width : 10%; border-right : 1px solid black">
+                            @*<select id=@("Completion" + i) name=@("Completion" + i) class=" form-control" style="font-size : 14px">
+                            <option value="">--Select--</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="Decemeber">Decemeber</option>
+
+                        </select>*@
+                            <input type="hidden" value="@obj.CompletionDate" name=@("Completion" + i) />
+                            @obj.CompletionDate
+                        </td>
+                        @*<td style="width : 10%; border-right : 1px solid black">
+                        <select id=@("ForCompletion" + i) name=@("ForCompletion" + i) class="form-control" style="font-size : 14px">
+                            <option value="">--Select--</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="Decemeber">Decemeber</option>
+
+                        </select>
+                    </td>*@
+                        <td style="width : 10% ;border-right : 1px solid black;">
+
+                            <input type="text" value="@obj.ForecastCompletionDate" name=@("ForCompletion" + i) id=@("ForCompletion" + i) class="form-control" style=" width : 100%;  font-size : 14px; border : none" />
+
+                        </td>
+                        <td style="width : 10% ;border-right : 1px solid black;">
+                            <div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;">
+                                <input type="text" value="@obj.Budget" name=@("Budget" + i) id=@("Budget" + i) class="form-control textboxrightalign" style=" width : 100%;  font-size : 14px; border : none" onblur="focuslost(this)" readonly />
+                            </div>
+                        </td>
+                        <td style="width : 10% ;border-right : 1px solid black;">
+
+                            <input type="text" value="@obj.CommitToDate" name=@("commit" + i) id=@("commmit" + i) class="form-control textboxrightalign" style=" width : 100%; font-size : 14px;  border : none" />
+
+                        </td>
+                        <td style="width : 10% ;border-right : 1px solid black;">
+
+                            <input type="text" value="@obj.ApprovedAmount" name=@("approved" + i) id=@("approved" + i) class="form-control textboxrightalign" style=" width : 100%; font-size : 14px;  border : none" />
+
+                        </td>
+                        <td style="width : 30%;">
+                            <textarea name=@("Comments" + i) rows="3" style="width : 100%; border : none ; font-size : 14px">@obj.Comments</textarea>
+                            <input type="hidden" name=@("hide" +i) value="False" />
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+
+
+    </div>
+    <div class="row">
+        <div class="col-sm-10"></div><div class="col-sm-2"> <input type="submit" value="Save" class="btn btn-primary" /></div>
+    </div>
+}
+

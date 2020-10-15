@@ -1,0 +1,238 @@
+﻿@model MonthlyReport.Models.Sales
+@{
+    ViewBag.Title = "Sales - Square & Lifestyle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 0;
+    int j = 0;
+    int role = Convert.ToInt32(Session["roleid"].ToString());
+}
+
+
+<br />
+@if (role == 1 || role == 4)
+{
+<div class="row">
+    <div class="col-sm-10"></div>
+    <div class="col-sm-2">
+        @Html.ActionLink("Edit", "SquareEdit", "Sales", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+}
+<br />
+
+@*<div class="row MetricBold">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-3">
+        <h5>CURRENT MONTH</h5>
+    </div>
+    <div class="col-sm-4">
+        <h5>ROLLING MONTHS</h5>
+    </div>
+    <div class="col-sm-2">
+        <h5>YEAR-TO-DATE</h5>
+    </div>
+</div>*@
+
+<br />
+<div class="row">
+    <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+        <tr class="MetricBold textaligncenter" style="padding-bottom : 10px;">
+            <th colspan="1"></th>
+            <th colspan="6"><h5 class="closetotable">CURRENT MONTH</h5></th>
+            <th colspan="5"><h5 class="closetotable">ROLLING MONTHS</h5></th>
+            <th colspan="3"><h5 class="closetotable">YEAR-TO-DATE</h5></th>
+        </tr>
+        <tr style="font-size : 13px;">
+            <th colspan="1" style="border-right : 1px solid black; border-left :1px solid black; border-top : 1px solid black; padding-bottom :0px;"></th>
+            <th colspan="3" style="border-right : 1px solid black; padding-bottom :0px; padding-top :0px;"></th>
+            <th colspan="2" style="border-right : 1px solid black; padding-bottom :0px; padding-top :0px; font-size : 13px; text-align : center;" class="MetricName"><div class="abc" style="padding-top :0px;">Sales PSF Chg(%)</div></th>
+            <th colspan="1" style="border-right : 1px solid black; padding-bottom :0px; padding-top :0px;"></th>
+            <th colspan="2" style="border-right : 1px solid black; padding-bottom :0px; padding-top :0px; font-size : 13px; text-align : center" class="MetricName">Sales PSF Chg(%)</th>
+            <th colspan="1" style="border-right : 1px solid black; padding-bottom :0px; padding-top :0px;"></th>
+            <th colspan="1" style="border-right : 1px solid black; padding-bottom :0px; padding-top :0px; font-size : 13px; text-align : center" class="MetricName">EST</th>
+            <th colspan="1" style="border-right : 1px solid black; padding-bottom :0px; padding-top :0px;"></th>
+            <th colspan="1" style="border-right : 1px solid black; padding-bottom :0px; padding-top :0px;"></th>
+            <th colspan="2" style=" font-size : 13px;padding-bottom :0px; padding-top :0px; text-align : center" class="MetricName">Sales PSF Chg(%)</th>
+        </tr>
+        <tr style="border-bottom : 1px solid Black;" class="MetricBold textaligncenter" !important>
+            <th style="width : 10%; vertical-align:middle; padding-bottom :0px; padding-top :0px;" class="MetricHeading"><div style=" font-size : 21pt;border-right: 1px solid black;border-left:1px solid black;margin-left : -12px; margin-right : -13px; margin-top: 0px;padding-bottom : 10px; padding-top : 10px; padding-right : 10px; padding-left :10px">SQUARE</div></th>
+            <th style="width : 4%; vertical-align:middle;padding-bottom :0px; padding-top :0px;"><h5 class="closetotable"># of <br />Tenants</h5></th>
+            <th style="width : 7%; vertical-align : middle;padding-bottom :0px; padding-top :0px;"><h5 class="closetotable">GLA</h5></th>
+            <th style="width : 8%; vertical-align :middle;padding-bottom :0px; padding-top :0px; border-right : 1px solid black"><h5 class="closetotable">Sales</h5></th>
+            <th style="width : 8%; vertical-align :middle;padding-bottom :0px; padding-top :0px;"><h5 class="closetotable">PSF</h5></th>
+            <th style="width : 4%; vertical-align :middle; padding-bottom :0px; padding-top :0px; border-right: 1px solid black"><h5 class="closetotable">From <br />LY</h5></th>
+            <th style="width : 7%;vertical-align :middle; padding-bottom :0px; padding-top :0px; border-right : 1px solid black"><h5 class="closetotable">Sales</h5></th>
+            <th style="width : 7%;vertical-align :middle; padding-bottom :0px; padding-top :0px;"><h5 class="closetotable">PSF</h5></th>
+            <th style="width : 4%;vertical-align :middle; padding-bottom :0px; padding-top :0px; border-right : 1px solid black"><h5 class="closetotable">From <br />LY</h5></th>
+            <th style="width : 8%;vertical-align :middle; padding-bottom :0px;padding-top :0px; border-right : 1px solid black"><h5 class="closetotable">Gross<br /> Rent</h5></th>
+            <th style="width : 8%;vertical-align :middle; padding-bottom :0px; padding-top :0px; border-right : 1px solid black"><h5 class="closetotable">PCT Rent</h5></th>
+            <th style="width : 4%;vertical-align :middle; padding-bottom :0px; padding-top :0px; border-right : 1px solid black"><h5 class="closetotable">GROC</h5></th>
+            <th style="width : 8%;vertical-align :middle;padding-bottom :0px; padding-top :0px; border-right : 1px solid black"><h5 class="closetotable">Sales</h5></th>
+            <th style="width : 8%;vertical-align :middle; padding-bottom :0px; padding-top :0px;"><h5 class="closetotable">PSF</h5></th>
+            <th style="width : 4%;vertical-align :middle; padding-bottom :0px; padding-top :0px;"><h5 class="closetotable">From<br />LY</h5></th>
+        </tr>
+        @foreach (var obj in Model.SquareSales)
+        {
+            i++;
+            <tr style="border-bottom : 0px solid Black;" class="MetricName" !important>
+                @if (i == 1)
+                {
+                    <td style="width : 10%; border-right : 1px solid black">CRU</td>
+                }
+                else if (i == 2)
+                {
+                    <td style="width : 10%; border-right : 1px solid black">Large Format & <br />Spec Leasing</td>
+
+                }
+                else if (i == 3)
+                {
+                    <td style="width : 10%; border-right : 1px solid black" class="MetricBold">TOTAL</td>
+                }
+
+                <td style="width : 4%; border-right : 1px solid black">@obj.Tenant</td>
+                <td style="width : 7%; border-right : 1px solid black">@obj.Gla</td>
+                <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.sales1</td>
+                <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.Psf1</td>
+                <td style="width : 4%; border-right : 1px solid black" class="textboxrightalign">@obj.LY1 %</td>
+                <td style="width : 7%; border-right : 2px solid black" class="textboxrightalign">$ @obj.Sales2</td>
+                <td style="width : 7%; border-right : 1px solid black" class="textboxrightalign">$ @obj.PSF2</td>
+                <td style="width : 4%; border-right : 1px solid black" class="textboxrightalign">@obj.LY2 %</td>
+                <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.GrossRent</td>
+                <td style="width : 8%;border-right : 1px solid black " class="textboxrightalign">$ @obj.PctRent</td>
+                <td style="width : 4%; border-right : 2px solid black" class="textboxrightalign">@obj.Groc %</td>
+                <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.Sales3</td>
+                <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.PSF3</td>
+                <td style="width : 4%; " class="textboxrightalign">@obj.LY3 %</td>
+            </tr>
+        }
+        <tr class="MetricName'">
+            <td rowspan="2" style="border-right : 1px solid black">Comments<br /><br /></td>
+            <td rowspan="2" colspan="14" style="border-top: 1px solid Black;">@Model.Comments[0].comment</td>
+        </tr>
+        <tr></tr>
+    </table>
+</div>
+
+
+<br />
+<br />
+@if (role == 1 || role == 4)
+{
+<div class="row">
+    <div class="col-sm-10"></div>
+    <div class="col-sm-2">
+        @Html.ActionLink("Edit", "LifeStyleEdit", "Sales", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+}
+<br />
+
+
+
+<div class="row">
+    <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+        <tr class="MetricBold textaligncenter" style="padding-bottom : 10px;">
+            <th colspan="1"></th>
+            <th colspan="6"><h5 class="closetotable">CURRENT MONTH</h5></th>
+            <th colspan="5"><h5 class="closetotable">ROLLING MONTHS</h5></th>
+            <th colspan="3"><h5 class="closetotable">YEAR-TO-DATE</h5></th>
+        </tr>
+        <tr style="font-size : 13px;">
+            <th colspan="1" style="border-right : 1px solid black; border-left :1px solid black; border-top : 1px solid black; padding-bottom :0px;"></th>
+            <th colspan="3" style="border-right : 1px solid black; padding-bottom :0px; padding-top :0px;"></th>
+            <th colspan="2" style="border-right : 1px solid black; padding-bottom :0px; padding-top :0px; font-size : 13px; text-align : center;" class="MetricName"><div class="abc" style="padding-top :0px;">Sales PSF Chg(%)</div></th>
+            <th colspan="1" style="border-right : 1px solid black; padding-bottom :0px; padding-top :0px;"></th>
+            <th colspan="2" style="border-right : 1px solid black; padding-bottom :0px; padding-top :0px; font-size : 13px; text-align : center" class="MetricName">Sales PSF Chg(%)</th>
+            <th colspan="1" style="border-right : 1px solid black; padding-bottom :0px; padding-top :0px;"></th>
+            <th colspan="1" style="border-right : 1px solid black; padding-bottom :0px; padding-top :0px; font-size : 13px; text-align : center" class="MetricName">EST</th>
+            <th colspan="1" style="border-right : 1px solid black; padding-bottom :0px; padding-top :0px;"></th>
+            <th colspan="1" style="border-right : 1px solid black; padding-bottom :0px; padding-top :0px;"></th>
+            <th colspan="2" style=" font-size : 13px;padding-bottom :0px; padding-top :0px; text-align : center" class="MetricName">Sales PSF Chg(%)</th>
+        </tr>
+        <tr style="border-bottom : 1px solid Black;" class="MetricBold textaligncenter" !important>
+            <th style="width : 10%; vertical-align:middle; padding-bottom :0px; padding-top :0px;" class="MetricHeading"><div style=" font-size : 21pt;border-right: 1px solid black;border-left:1px solid black;margin-left : -12px; margin-right : -13px; margin-top: 0px;padding-bottom : 10px; padding-top : 10px; padding-right : 10px; padding-left :10px">LIFESTYLE</div></th>
+            <th style="width : 4%; vertical-align:middle;padding-bottom :0px; padding-top :0px;"><h5 class="closetotable"># of <br />Tenants</h5></th>
+            <th style="width : 7%; vertical-align : middle;padding-bottom :0px; padding-top :0px;"><h5 class="closetotable">GLA</h5></th>
+            <th style="width : 8%; vertical-align :middle;padding-bottom :0px; padding-top :0px; border-right : 1px solid black"><h5 class="closetotable">Sales</h5></th>
+            <th style="width : 8%; vertical-align :middle;padding-bottom :0px; padding-top :0px;"><h5 class="closetotable">PSF</h5></th>
+            <th style="width : 4%; vertical-align :middle; padding-bottom :0px; padding-top :0px; border-right: 1px solid black"><h5 class="closetotable">From <br />LY</h5></th>
+            <th style="width : 7%;vertical-align :middle; padding-bottom :0px; padding-top :0px; border-right : 1px solid black"><h5 class="closetotable">Sales</h5></th>
+            <th style="width : 7%;vertical-align :middle; padding-bottom :0px; padding-top :0px;"><h5 class="closetotable">PSF</h5></th>
+            <th style="width : 4%;vertical-align :middle; padding-bottom :0px; padding-top :0px; border-right : 1px solid black"><h5 class="closetotable">From <br />LY</h5></th>
+            <th style="width : 8%;vertical-align :middle; padding-bottom :0px;padding-top :0px; border-right : 1px solid black"><h5 class="closetotable">Gross<br /> Rent</h5></th>
+            <th style="width : 8%;vertical-align :middle; padding-bottom :0px; padding-top :0px; border-right : 1px solid black"><h5 class="closetotable">PCT Rent</h5></th>
+            <th style="width : 4%;vertical-align :middle; padding-bottom :0px; padding-top :0px; border-right : 1px solid black"><h5 class="closetotable">GROC</h5></th>
+            <th style="width : 8%;vertical-align :middle;padding-bottom :0px; padding-top :0px; border-right : 1px solid black"><h5 class="closetotable">Sales</h5></th>
+            <th style="width : 8%;vertical-align :middle; padding-bottom :0px; padding-top :0px;"><h5 class="closetotable">PSF</h5></th>
+            <th style="width : 4%;vertical-align :middle; padding-bottom :0px; padding-top :0px;"><h5 class="closetotable">From<br />LY</h5></th>
+        </tr>
+        @foreach (var obj in Model.LifeStyles)
+        {
+            j++;
+            <tr style="border-bottom : 0px solid Black;" class="MetricName" !important>
+                @if (j == 1)
+                {
+                    <td style="width : 10%; border-right : 1px solid black">CRU</td>
+                }
+                else if (j == 2)
+                {
+                    <td style="width : 10%; border-right : 1px solid black">Large Format & <br />Spec Leasing</td>
+
+                }
+                else if (j == 3)
+                {
+                    <td style="width : 10%; border-right : 1px solid black" class="MetricBold">TOTAL</td>
+                }
+
+                <td style="width : 4%; border-right : 1px solid black">@obj.Tenant</td>
+                <td style="width : 7%; border-right : 1px solid black">@obj.Gla</td>
+                <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.sales1</td>
+                <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.Psf1</td>
+                <td style="width : 4%; border-right : 1px solid black" class="textboxrightalign">@obj.LY1 %</td>
+                <td style="width : 7%; border-right : 2px solid black" class="textboxrightalign">$ @obj.Sales2</td>
+                <td style="width : 7%; border-right : 1px solid black" class="textboxrightalign">$ @obj.PSF2</td>
+                <td style="width : 4%; border-right : 1px solid black" class="textboxrightalign">@obj.LY2 %</td>
+                <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.GrossRent</td>
+                <td style="width : 8%;border-right : 1px solid black " class="textboxrightalign">$ @obj.PctRent</td>
+                <td style="width : 4%; border-right : 2px solid black" class="textboxrightalign">@obj.Groc %</td>
+                <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.Sales3</td>
+                <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.PSF3</td>
+                <td style="width : 4%; " class="textboxrightalign">@obj.LY3 %</td>
+            </tr>
+        }
+        <tr class="MetricName'">
+            <td rowspan="2" style="border-right : 1px solid black">Comments<br /><br /></td>
+            <td rowspan="2" colspan="14" style="border-top: 1px solid Black;">@Model.Comments[1].comment</td>
+        </tr>
+        <tr></tr>
+    </table>
+</div>
+
+<br />
+@if (role == 1 || role == 4)
+{
+<div class="row">
+    <div class="col-sm-10"></div>
+    <div class="col-sm-2">
+        @Html.ActionLink("Edit", "CommentsEdit", "Sales", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+}
+<br />
+
+<div class="row">
+    <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+        <tr style="border-bottom : 1px solid Black; padding-bottom : 0px" class="MetricBold" !important>
+            <th style="width : 10%; vertical-align :bottom;" class="MetricHeading"><div style=" font-size : 17pt; border-top : 1px solid Black;border-right: 1px solid black;border-left:1px solid black;margin-left : -13px; margin-bottom: -12px; margin-right : -13px;padding : 10px;">OTHER PHASE KEY HIGHLIGHTS</div></th>
+            <th style="width : 45%; vertical-align : bottom"><h5 class="closetotable">@Model.Comments[2].sector</h5></th>
+            <th style="width : 45%; vertical-align :bottom"><h5 class="closetotable">@Model.Comments[3].sector</h5></th>
+        </tr>
+        <tr class="MetricName">
+            <td style="width : 10%; font-size : 14px; border-right : 1px solid black" rowspan="2">Comments</td>
+            <td style="width : 45%; vertical-align : bottom" rowspan="2">@Model.Comments[2].comment</td>
+            <td style="width : 45%; vertical-align :bottom" rowspan="2">@Model.Comments[3].comment </td>
+        </tr>
+        <tr></tr>
+    </table>
+</div>
+

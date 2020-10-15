@@ -1,0 +1,100 @@
+﻿@model MonthlyReport.Models.Home
+@{
+}
+<style type="text/css">
+    .textboxrightalign {
+        text-align: right;
+    }
+
+    .textaligncenter {
+        text-align: center;
+    }
+
+    td {
+        padding-left: 3px;
+        padding-right: 2px;
+        line-height: 1.4;
+    }
+
+    .page {
+        page-break-before: always;
+    }
+
+    th {
+        line-height: 1.2;
+    }
+
+    .closetotable {
+        line-height: 1;
+        margin-bottom: 0.1rem;
+        font-weight: bold;
+        color: #000;
+        font-family: Metric;
+        margin-top: 0.1rem;
+    }
+
+    .closetotablerow {
+        line-height: 1.4;
+        margin-bottom: 0.1rem;
+        font-weight: bold;
+        color: #000;
+        font-family: Metric;
+    }
+
+    @@page {
+        margin-top: 50px;
+         @@bottom-center {
+                    content: element(footer);
+                } 
+         margin-bottom : 55px;
+    }
+    #footer {
+        position: running(footer);
+    }
+
+</style>
+<p class="page">
+    <div style="width : 10%; float : left; border : 1px solid white; height : 300px;"></div>
+    <div style="width : 70%; float : left;">
+        <div style="height : 30%;">
+            <br />
+            <br />
+            <br />
+
+        </div>
+        <div style="line-height : 1; font-family : Zahrah; font-weight :bold; font-size : 60pt; color : black">
+            Quaterly<br />
+            Management <br />
+            Report
+        </div>
+        <br />
+
+        <div style="font-family : Metric; font-weight : bold; font-size : 25pt ; width : 45%">
+            @*<input type="text" style="height : 80px; " value="@Model.quarter" readonly />*@
+            @Model.quarter
+        </div>
+
+
+        <br />
+        <div style="border-bottom : 3px solid black; width :45%; text-align : left"></div>
+        <br />
+
+        <div style="width : 25%; float : left;">
+            <img width="100%" src="Images/DIX30_LOGO.png" )" />
+        </div>
+        <div style="width : 25%; float : left;">
+            <img width="100%" src="Images/OXFORD_LOGO.png" )" />
+        </div>
+    </div>
+
+    <div style="width: 100%; text-align : right; font-family : Metric; " id="footer">
+        <span>  <img width="140" height="50" src="Images/footer.png" )" /></span>
+        
+        </div>
+
+
+
+</p> 
+
+
+

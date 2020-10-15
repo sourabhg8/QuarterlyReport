@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Quartier Dix30</title>
+
+    <style type="text/css">
+        @@font-face {
+            font-family: 'Metric-Bold';
+            src: url('../../fonts/Metric-Bold.otf') format('opentype');
+        }
+
+        .MetricBold {
+            font-family: 'Metric-Bold'
+        }
+
+        @@font-face {
+            font-family: 'Metric-Regular';
+            src: url('../../fonts/Metric-Regular.otf') format('opentype');
+        }
+
+        .MetricName {
+            font-family: 'Metric-Regular'
+        }
+
+        @@font-face {
+            font-family: 'Indian-Type-Foundry-Zahrah-Bold-Italic';
+            src: url('../../fonts/Indian Type Foundry - Zahrah Bold Italic.otf') format('opentype');
+        }
+
+        .MetricHeading {
+            font-family: Indian-Type-Foundry-Zahrah-Bold-Italic;
+        }
+
+        @@font-face {
+            font-family: 'Indian-Type-Foundry-Zahrah-Light-Bold';
+            src: url('../fonts/Indian Type Foundry - Zahrah Bold.otf') format('opentype');
+        }
+
+        .MetricLanding {
+            font-family: Indian-Type-Foundry-Zahrah-Light-Bold;
+        }
+
+        @@font-face {
+            font-family: 'Indian-Type-Foundry-Zahrah-Semibold';
+            src: url('../../fonts/Indian Type Foundry - Zahrah Semibold.otf') format('opentype');
+        }
+
+        .MetricMis {
+            font-family: Indian-Type-Foundry-Zahrah-Semibold;
+        }
+
+        .textboxrightalign {
+            text-align: right;
+        }
+
+        .textaligncenter {
+            text-align: center;
+        }
+
+        .textalignmiddle {
+            vertical-align: middle;
+        }
+    </style>
+
+    <script type="text/javascript">
+        //(function ($) {
+
+        //    "use strict";
+        function checkPercentage(e) {
+            var id = $(e).attr('id');
+            var evalue = document.getElementById(id).value;
+            if (evalue.trim() != '') {
+                if ($.isNumeric(evalue.trim())) { }
+                else {
+                    alert('input value is not valid');
+                    document.getElementById(id).value = '';
+                }
+            }
+        }
+
+        function focuslost(e) {
+            var id = $(e).attr('id');
+            var evalue = document.getElementById(id).value;
+            evalue = evalue.replace(/,/g, '');
+            if (evalue.trim() != '') {
+                if ($.isNumeric(evalue.trim())) {
+                    document.getElementById(id).value = commafy(evalue.trim());
+                }
+                else {
+                    alert('input value is not valid');
+                    document.getElementById(id).value = '';
+                }
+            }
+        }
+
+        function commafy(num) {
+            var str = num.toString().split('.');
+            if (str[0].length >= 4) {
+                str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+            }
+            if (str[1] && str[1].length >= 4) {
+                str[1] = str[1].replace(/(\d{3})/g, '$1 ');
+            }
+            return str.join('.');
+        }
+
+            var fullHeight = function () {
+
+                $('.js-fullheight').css('height', $(window).height());
+                $(window).resize(function () {
+                    $('.js-fullheight').css('height', $(window).height());
+                });
+
+            };
+           // fullHeight();
+
+        //    $('#sidebarCollapse').on('click', function () {
+        //        console.log('inside function');
+        //        $('#sidebar').toggleClass('active');
+        //    });
+
+        //})(jQuery);
+        // A $( document ).ready() block.
+        $(document).ready(function () {
+            console.log("ready!");
+            fullHeight();
+            $('#sidebarCollapse').click(function () {
+                console.log("clicked!");
+                $('#sidebar').toggleClass('active');
+            });
+        });
+
+    </script>
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <h2 class="mb-4 MetricHeading"><u>@ViewBag.Title</u></h2>
+            @RenderBody()
+        </div>
+
+    </div>
+    @*<footer>
+            <p>&copy; @DateTime.Now.Year - Quartier Dix 30</p>
+        </footer>*@
+</body>
+
+
+
+
+
+</html>
+
+

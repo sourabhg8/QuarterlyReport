@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Legal & Exposures";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 0;
+}
+
+<script type="text/javascript">
+    function resetform() {
+        $("input:text").val("");
+
+        $("textarea").val("");
+    };
+
+</script>
+
+
+
+
+
+
+<div class="row">
+    <div class="col-sm-10">
+
+    </div>
+    <div class="col-sm-1">
+        <button class="btn btn-primary" onclick="resetform();">Reset</button>
+    </div>
+    <div class="col-sm-1">@Html.ActionLink("Cancel", "Index", "Legal", null, new { @class = "btn btn-primary" })</div>
+</div>
+<br />
+<br />
+
+@using (Html.BeginForm("LegalEdit", "Legal", FormMethod.Post))
+{
+    <div class="container">
+        <div class="row">
+
+            <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+                <tr style="border-bottom : 2px solid Black; padding-bottom : 0px" class="MetricBold textaligncenter" !important>
+                    <th style="width : 25%;vertical-align : middle"><h5 class="closetotable">Tenant</h5></th>
+                    <th style="width : 13%; vertical-align : middle"><h5 class="closetotable">AR</h5></th>
+                    <th style="width : 13%;vertical-align :middle"><h5 class="closetotable">Probabilty<br />of collection</h5></th>
+                    <th style="width : 49%; vertical-align : middle"><h5 class="closetotable">Comments</h5></th>
+                </tr>
+                @foreach (var obj in Model)
+                {
+                    i++;
+                    <tr class="MetricName">
+                        <td style="width : 25% ;border-right : 1px solid black">
+                            <input type="text" value="@obj.Tenant" name=@("Tenant" + i) id=@("Tenant" + i) class="form-control " style=" width : 100%;font-size : 16px; border : none" \ />
+                        </td>
+                        <td style="width : 13% ;border-right : 1px solid black">
+                            <div style="float : left; width : 8%">$</div><div style="float: left; width : 90%;">
+                                <input type="text" value="@obj.Ar" name=@("Ar" + i) id=@("Ar" + i) class="form-control textboxrightalign" style=" width : 100%;font-size : 16px; border : none" onblur="focuslost(this)" />
+                            </div>
+                        </td>
+                        <td style="width : 13% ;border-right : 2px solid black">
+                            <div style="float : left; width : 90%"> <input type="text" value="@obj.CollectionProb" name=@("CollectionProb" + i) id=@("CollectionProb" + i) class="form-control textboxrightalign" style=" width : 100%;font-size : 16px; border : none" onblur="checkPercentage(this)" /></div>
+                            <div style="float: left; width : 8%;">%</div>
+                        </td>
+                        <td style="width : 49%">
+                            <textarea name=@("comment" + i) rows="6" style="width : 100%; font-size : 16px; border : none" class="">@obj.Comments</textarea>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-10"></div><div class="col-sm-2"> <input type="submit" value="Save" class="btn btn-primary" /></div>
+    </div>
+}

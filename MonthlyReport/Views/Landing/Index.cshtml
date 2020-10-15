@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_LayoutLanding.cshtml";
+}
+<style type ="text/css">
+    .line {
+        position: relative;
+        padding-bottom : 5px;
+    }
+    .line::after {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50%;
+        height: 1px;
+        border-bottom: 3px solid black;
+        content: ""
+    }
+</style>
+
+@*<div class="container">
+        <div class="Row MetricBold">
+            <a  style ="font-size : 25pt ; color : black;"href="@Url.Action("Index", "MonthlyHome")"><u>Access To Monthly Report</u></a>
+        </div>
+        </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <div class="Row MetricBold">
+            <a style ="font-size : 25pt ; color : black;" href="@Url.Action("Index", "Home")"><u>Access To Quaterly Report</u></a>
+        </div>
+    </div>*@
+
+<div class="container MetricLanding" style="text-align : center; padding-left : 4%;padding-top : 4%; line-height : 1.2; font-size : 60pt;  color : black">
+    <center>
+        <div class="row">
+            <div class="col-md-6">
+                Oxford
+                <br />
+                Management
+                <br />
+                <div style="display : inline; border-bottom : 3px solid black; padding-bottom : 5px;">Report</div>
+            </div>
+        </div>
+
+
+    </center>
+</div>
+@*<div style="border-bottom : 3px solid black; padding-top : 2%;margin-left : 30%; width : 25%; text-align : left;"></div>*@

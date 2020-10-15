@@ -1,0 +1,66 @@
+﻿@model MonthlyReport.Models.SpecialityLeasingModel
+@{
+    ViewBag.Title = "Speciality Leasing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int role = Convert.ToInt32(Session["roleid"].ToString());
+}
+
+@if (role == 1 || role == 8)
+{
+<div class="row">
+    <div class="col-md-10">
+
+    </div>
+    <div class="col-md-2">@Html.ActionLink("Edit", "SpecialityEdit", "SpecialtyLeasing", null, new { @class = "btn btn-primary" })</div>
+</div>
+<br />
+}
+<br />
+
+<div class="row">
+    <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+        <tr style="border-bottom : 2px solid Black; border-top : 2px solid Black; padding-bottom : 0px" class = "MetricBold"!important>
+            <th style="width : 14%; border-right : 1px solid black; vertical-align : middle" class="textalignmiddle"><h5 class="closetotable">Tenant</h5></th>
+            <th style="width : 8%; border-right : 1px solid black; vertical-align : middle" class="textaligncenter textalignmiddle"><h5 class="closetotable">Sector</h5></th>
+            <th style="width : 8%; border-right : 1px solid black;vertical-align : middle" class="textaligncenter textalignmiddle"><h5 class="closetotable">Unit No.</h5></th>
+            <th style="width : 8%; border-right : 1px solid black; vertical-align : middle" class="textaligncenter textalignmiddle"><h5 class="closetotable">GLA</h5></th>
+            <th style="width : 8%; border-right : 1px solid black; vertical-align : middle" class="textaligncenter textalignmiddle"><h5 class="closetotable" >Term</h5></th>
+            <th style="width : 8%; border-right : 1px solid black; vertical-align : middle" class="textaligncenter textalignmiddle"><h5 class="closetotable">Gross Rent<br />Budget</h5></th>
+            <th style="width : 8%; border-right : 1px solid black; vertical-align : middle" class="textaligncenter textalignmiddle"><h5 class="closetotable">Gross Rent<br />Actual</h5></th>
+            <th style="width : 8%; border-right : 2px solid black; vertical-align : middle" class="textaligncenter textalignmiddle"><h5 class="closetotable">% of<br />Sales</h5></th>
+            <th style="width : 30%; vertical-align : middle" class="textalignmiddle"><h5 class="closetotable">Comments</h5></th>
+        </tr>
+        @foreach (var obj in Model.specialityLeasings)
+        {
+            <tr class="MetricName" style="font-size : 14px">
+                <td style="width : 14%; border-right : 1px solid black">@obj.Tenant</td>
+                <td style="width : 8%; border-right : 1px solid black">@obj.Sector</td>
+                <td style="width : 8%; border-right : 1px solid black">@obj.UnitNo</td>
+                <td style="width : 8%; border-right : 1px solid black">@obj.Gla</td>
+                <td style="width : 8%; border-right : 1px solid black">@obj.Term</td>
+                <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$@obj.GrossRentBudget</td>
+                <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$@obj.GrossRentActual</td>
+                <td style="width : 8%; border-right : 2px solid black" class="textboxrightalign">$ @obj.SalesPercentage</td>
+                <td style="width : 30%;">@obj.Comments</td>
+            </tr>
+        }
+    </table>
+
+</div>
+<br />
+<br />
+
+<div class="row MetricBold" style="border-bottom : 2px solid black"  >
+    <h5><strong>SPECIAL PROJECTS</strong></h5>
+</div>
+<div class="row">
+    <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+        @foreach (var obj in Model.specialProjects)
+        {
+            <tr class="MetricName" style="font-size : 14px; border-">
+                <td style="width : 30%; border-right : 1px solid black"><div class="container">@obj.Title </div></td>
+                <td style="width : 70%; "><div class="container" >@obj.Content </div></td>
+            </tr>
+        }
+    </table>
+</div>

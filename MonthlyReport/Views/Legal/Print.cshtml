@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MonthlyReport.Models.Legal>
+@{
+    int i = 0;
+}
+
+
+
+<p class="page">
+    <h2 style="font-family : Zahrah; font-weight : bold; font-style : italic"><u>Legal and Exposures</u></h2>
+    <br />
+
+    <div style="width : 100%; ">
+        <div class="">
+
+            <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+                <tr style="" class="MetricBold textaligncenter" !important>
+                    <th style="width : 25%; vertical-align :middle; border-bottom : 2px solid Black;"><h5 class="closetotable">Tenant</h5></th>
+                    <th style="width : 13%; vertical-align : middle ; border-bottom : 2px solid Black;"><h5 class="closetotable">AR</h5></th>
+                    <th style="width : 13%; vertical-align : middle; border-bottom : 2px solid Black;"><h5 class="closetotable">Probabilty<br />of collection</h5></th>
+                    <th style="width : 49%; vertical-align : middle; border-bottom : 2px solid Black;"><h5 class="closetotable">Comments</h5></th>
+                </tr>
+                @foreach (var obj in Model)
+                {
+                    i++;
+                    <tr style="font-family : Metric; font-size : 12px;">
+                        <td style="width : 25% ;border-right : 1px solid black; font-size : 12px; padding-left : 10px;">
+                            @*<input type="text" value="@obj.Tenant" name=@("Tenant" + i) id=@("Tenant" + i) class="form-control" style=" width : 100%;font-size : 16px; border : none" readonly />*@
+                            @obj.Tenant
+                        </td>
+                        <td style="width : 13% ;border-right : 1px solid black; font-size : 12px" class="textboxrightalign">
+
+                            @*<input type="text" value="@obj.Ar" name=@("Ar" + i) id=@("Ar" + i) class="form-control" style=" width : 100%;font-size : 16px; border : none" readonly />*@
+                            $ @obj.Ar
+
+                        </td>
+                        <td style="width : 13% ;border-right : 2px solid black; font-size : 12px" class="textboxrightalign">
+                            @obj.CollectionProb %
+                        </td>
+                        <td style="width : 49%">
+                            @*<textarea name=@("comment" + i) rows="6" style="width : 100%; font-size : 14px; border : none" class="" readonly>@obj.Comments</textarea>*@
+                            @obj.Comments
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</p>

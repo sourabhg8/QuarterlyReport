@@ -1,0 +1,169 @@
+﻿@model MonthlyReport.Models.CustomerService
+@{
+    ViewBag.Title = "Customer Service/Community Relations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 0;
+    int j = 0;
+    int k = 0;
+}
+@{
+    int role = Convert.ToInt32(Session["roleid"].ToString());
+}
+
+@if (role == 1 || role == 5)
+{
+<div class="row">
+    <div class="col-md-10">
+
+    </div>
+    <div class="col-md-2">@Html.ActionLink("Edit", "InteractiveEdit", "CustomerService", null, new { @class = "btn btn-primary" })</div>
+</div>
+<br />
+}
+<br />
+
+
+<div class="row">
+    <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+        <tr style="border-bottom : 0px solid Black; padding-bottom : 0px" class="MetricBold" !important>
+            <td style="width : 100%; text-align : center" colspan="7"><h5 class="closetotable">INTERACTIVE</h5></td>
+        </tr>>
+        <tr style="border-bottom : 2px solid Black; border-top : 2px solid Black; padding-bottom : 10px" class="MetricBold" !important>
+            <th style="width : 20%; border-right : 1px solid black;vertical-align :middle"><h5 class="closetotable">Measure</h5></th>
+            <th style="width : 15%; border-right : 1px solid black;vertical-align :middle" class="textaligncenter"><h5 class="closetotable">@(Model.Headers[0].Month1 + " " + Model.Headers[0].Year1)</h5></th>
+            <th style="width : 15%; border-right : 1px solid black;vertical-align :middle" class="textaligncenter"><h5 class="closetotable">@(Model.Headers[0].Month2 + " " + Model.Headers[0].Year2)</h5></th>
+            <th style="width : 10%; border-right : 1px solid black;vertical-align :middle" class="textaligncenter"><h5 class="closetotable">% Change</h5></th>
+            <th style="width : 15%; border-right : 1px solid black; text-align : center"><h5 class="closetotable">YTD @Model.Headers[0].Year3</h5></th>
+            <th style="width : 15%; border-right : 1px solid black; text-align : center"><h5 class="closetotable">YTD @Model.Headers[0].Year4</h5></th>
+            <th style="width : 10%; border-right : 1px solid black" class="textaligncenter"><h5 class="closetotable">% Change</h5></th>
+        </tr>
+        @foreach (var obj in Model.Interactives)
+        {
+            i++;
+            <tr class="MetricName" style="font-size : 14px">
+                @if (i == 1)
+                {
+                    <td style="width : 20%; border-right : 1px solid black">Website Users</td>
+                }
+                else
+                {
+                    <td style="width : 20%; border-right : 1px solid black">Website Visits</td>
+                }
+                <td style="width : 15%; border-right : 1px solid black; text-align :right">@obj.Month1</td>
+                <td style="width : 15%; border-right : 1px solid black; text-align :right">@obj.Month2</td>
+                <td style="width : 10%; border-right : 1px solid black; text-align :right">@obj.Change1 %</td>
+                <td style="width : 15%; border-right : 1px solid black; text-align :right">$ @obj.Year1</td>
+                <td style="width : 15%; border-right : 1px solid black;text-align :right">$ @obj.Year2</td>
+                <td style="width : 10%; border-right : 1px solid black;text-align :right">@obj.Change2 %</td>
+            </tr>
+        }
+    </table>
+
+</div>
+<br />
+<br />
+
+@if (role == 1 || role == 5)
+{
+<div class="row">
+    <div class="col-md-10">
+
+    </div>
+    <div class="col-md-2">@Html.ActionLink("Edit", "SocialMediaEdit", "CustomerService", null, new { @class = "btn btn-primary" })</div>
+</div>
+}
+
+
+<div class="row">
+    <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+        <tr style="border-bottom : 1px solid Black; padding-bottom : 0px" class="MetricBold" !important>
+            <td style="width : 100%; text-align : center" colspan="7"><h5 class="closetotable">SOCIAL MEDIA</h5></td>
+        </tr>>
+        <tr style="border-bottom : 2px solid Black; border-top : 2px solid Black; padding-bottom : 10px" class="MetricBold" !important>
+            <th style="width : 20%; border-right : 1px solid black"><h5 class="closetotable">Measure</h5></th>
+            <th style="width : 15%; border-right : 1px solid black" class="textaligncenter"><h5 class="closetotable">@(Model.Headers[1].Month1 + " " + Model.Headers[1].Year1)</h5></th>
+            <th style="width : 15%; border-right : 1px solid black" class="textaligncenter"><h5 class="closetotable">@(Model.Headers[1].Month2 + " " + Model.Headers[1].Year2)</h5></th>
+            <th style="width : 10%; border-right : 1px solid black" class="textaligncenter"><h5 class="closetotable">% Change</h5></th>
+            <th style="width : 15%; border-right : 1px solid black; text-align : center"><h5 class="closetotable">YTD @Model.Headers[1].Year3</h5></th>
+            <th style="width : 10%; border-right : 1px solid black" class="textaligncenter"><h5 class="closetotable">% Change</h5></th>
+        </tr>
+        @foreach (var obj in Model.SocialMedias)
+        {
+            j++;
+            <tr class="MetricName" style="font-size : 14px">
+                @if (j == 1)
+                {
+                    <td style="width : 20%; border-right : 1px solid black">Website Users</td>
+                }
+                else if (j == 2)
+                {
+                    <td style="width : 20%; border-right : 1px solid black">Website Visits</td>
+                }
+                else if (j == 3)
+                {
+                    <td style="width : 20%; border-right : 1px solid black">Facebook Subscribers</td>
+                }
+                else if (j == 4)
+                {
+                    <td style="width : 20%; border-right : 1px solid black">Instagram Followers</td>
+                }
+                <td style="width : 15%; border-right : 1px solid black; text-align :right">@obj.Month1</td>
+                <td style="width : 15%; border-right : 1px solid black; text-align :right">@obj.Month2</td>
+                <td style="width : 10%; border-right : 1px solid black;text-align :right">@obj.Change1 %</td>
+                <td style="width : 15%; border-right : 1px solid black; text-align :right">$ @obj.Year2</td>
+                <td style="width : 10%; border-right : 1px solid black;text-align :right">@obj.Change2 %</td>
+            </tr>
+        }
+    </table>
+
+</div>
+<br />
+<br />
+@if (role == 1 || role == 5)
+{
+<div class="row">
+    <div class="col-md-10">
+    </div>
+    <div class="col-md-2">@Html.ActionLink("Edit", "GiftCardEdit", "CustomerService", null, new { @class = "btn btn-primary" })</div>
+</div>
+}
+
+<div class="row">
+    <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+        <tr style="border-bottom : 1px solid Black; padding-bottom : 0px" class="MetricBold" !important>
+            <td style="width : 100%; text-align : center" colspan="7"><h5 class="closetotable">GIFT CARDS</h5></td>
+        </tr>>
+        <tr style="border-bottom : 2px solid Black; border-top : 2px solid Black; padding-bottom : 10px" class="MetricBold" !important>
+            <th style="width : 20%; border-right : 1px solid black; vertical-align : middle" class=""><h5 class="closetotable">Measure</h5></th>
+            <th style="width : 15%; border-right : 1px solid black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">@(Model.Headers[2].Month1 + " " + Model.Headers[2].Year1)</h5></th>
+            <th style="width : 15%; border-right : 1px solid black; vertical-align :middle" class="textaligncenter"><h5 class="closetotable">@(Model.Headers[2].Month2 + " " + Model.Headers[2].Year2)</h5></th>
+            <th style="width : 10%; border-right : 1px solid black; vertical-align :middle" class="textaligncenter"><h5 class="closetotable">% Change</h5></th>
+            <th style="width : 15%; border-right : 1px solid black;vertical-align :middle ;text-align : center"><h5 class="closetotable">YTD @Model.Headers[2].Year3</h5></th>
+            <th style="width : 15%; border-right : 1px solid black;vertical-align :middle; text-align : center"><h5 class="closetotable">YTD @Model.Headers[2].Year4</h5></th>
+            <th style="width : 10%; border-right : 1px solid black;vertical-align :middle" class="textaligncenter"><h5 class="closetotable">% Change</h5></th>
+        </tr>
+        @foreach (var obj in Model.GiftCards)
+        {
+            k++;
+            <tr class="MetricName" style="font-size : 14px">
+                @if (k == 1)
+                {
+                    <td style="width : 20%; border-right : 1px solid black">Website Users</td>
+                }
+                else
+                {
+                    <td style="width : 20%; border-right : 1px solid black"> Website Visits  </td>
+                }
+                <td style="width : 15%; border-right : 1px solid black; text-align :right">@obj.Month1</td>
+                <td style="width : 15%; border-right : 1px solid black; text-align :right">@obj.Month2</td>
+                <td style="width : 10%; border-right : 1px solid black;text-align :right">@obj.Change1 %</td>
+                <td style="width : 15%; border-right : 1px solid black; text-align :right">$ @obj.Year1</td>
+                <td style="width : 15%; border-right : 1px solid black; text-align :right">$ @obj.Year2</td>
+                <td style="width : 10%; border-right : 1px solid black; text-align :right">@obj.Change2 %</td>
+            </tr>
+        }
+    </table>
+
+</div>
+
+

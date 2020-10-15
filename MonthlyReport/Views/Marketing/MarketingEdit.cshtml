@@ -1,0 +1,209 @@
+﻿@model List<MonthlyReport.Models.Marketing>
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "Events/Activation Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var mod = @Html.Raw(Json.Encode(Model));
+            // alert(JSON.stringify(mod));        
+        var dropdown = document.getElementById("Type11");
+            if (dropdown != null) {
+                dropdown.value = mod[0].Type;
+        }
+        dropdown = document.getElementById("Type12");
+        if (dropdown != null) {
+            dropdown.value = mod[1].Type;
+        }
+        
+
+    });
+
+    function resetform() {
+        $("input:text").val("");
+
+        $("textarea").val("");
+        var dropdown = document.getElementById("Type11")
+        if (dropdown != null) {
+            dropdown.val = 'Type';
+        }
+        var dropdown = document.getElementById("Type12")
+        if (dropdown != null) {
+            dropdown.val = 'Type';
+        }
+
+
+
+        $.ajax({
+            url: '/Marketing/DeleteImages',
+
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (error) {
+                alert("Something went wrong" + JSON.stringify(error));
+            }
+        });
+
+
+
+
+    };
+
+</script>
+
+
+<div class="row">
+    <div class="col-sm-10">
+
+    </div>
+    <div class="col-sm-1">
+        <button class="btn btn-primary" onclick="resetform();">Reset</button>
+    </div>
+    <div class="col-sm-1">
+        @Html.ActionLink("Cancel", "Index", "Marketing", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+
+<br />
+<br />
+
+<div class="row">
+
+    <div class="col-sm-6" style="height : 400px; border : 1px solid black">
+        @using (Html.BeginForm("ImageEditFirst", "Marketing", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="file1" class="form-control" accept=".jpg, .png , .jpeg, .bmp" />
+            <input type="submit" value="Upload" class="btn btn-primary" />
+            <div>@ViewBag.message1</div>
+        }
+    </div>
+    <div class="col-sm-6" style="height : 400px; border : 1px solid">
+        @using (Html.BeginForm("ImageEditSecond", "Marketing", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="file2" class="form-control" accept=".jpg, .png , .jpeg, .bmp" />
+            <input type="submit" value="Upload" class="btn btn-primary" />
+            <div>@ViewBag.message2</div>
+        }
+    </div>
+</div>
+
+<br />
+<div class="row">
+    <div class="col-sm-10"></div>
+    <div class="col-sm-2">
+
+    </div>
+</div>
+
+
+
+
+
+@using (Html.BeginForm("MarketingEdit", "Marketing", FormMethod.Post))
+{
+
+    <div class="row">
+        <div class="col-sm-6">
+            <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+                <tr style="padding-bottom : 10px" class="MetricBold" !important>
+                    <th style="width : 25%; border-right : 1px solid black">
+                        <select id=@("Type11") name=@("Type1") class=" form-control-lg">
+                            <option value="Type">Type</option>
+                            <option value="Activation">Activation</option>
+                            <option value="Event">Event</option>
+                            <option value="Type">Type</option>
+
+                        </select>
+                    </th>
+                    <th style="width : 75%;" colspan="3">
+                        <input type="text" value="@Model[0].TypeValue" name="TypeValue1" id="TypeValue1" style="font-size : 18px" class="form-control" />
+                    </th>
+                </tr>
+                <tr style="border-top : 1px solid Black; padding-bottom : 10px" class="MetricName" !important>
+                    <td style="width : 25%; border-right : 1px solid black">KPI</td>
+                    <td style="width : 25%; ">
+                        <input type="text" value="@Model[0].Kpi1" name="Kpi11" id="Kpi11" class="form-control" />
+                    </td>
+                    <td style="width : 25%; ">
+                        <input type="text" value="@Model[0].Kpi2" name="kpi12" id="kpi12" class="form-control" />
+                    </td>
+                    <td style="width : 25%; ">
+                        <input type="text" value="@Model[0].Kpi3" name="Kpi13" id="Kpi13" class="form-control" />
+                    </td>
+                </tr>
+                <tr style=" padding-bottom : 10px" class="MetricName" !important>
+                    <td style="width : 25%; border-right : 1px solid black">Result</td>
+                    <td style="width : 25%; ">
+                        <input type="text" value="@Model[0].Result1" name="Result11" id="Result11" class="form-control" />
+                    </td>
+                    <td style="width : 25%; ">
+                        <input type="text" value="@Model[0].Result2" name="Result12" id="Result12" class="form-control" />
+                    </td>
+                    <td style="width : 25%; ">
+                        <input type="text" value="@Model[0].Result3" name="Result13" id="Result13" class="form-control" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+                <tr style="padding-bottom : 10px" class="MetricBold" !important>
+                    <th style="width : 25%; border-right : 1px solid black">
+                        <select id=@("Type12") name=@("Type2") class=" form-control-lg">
+                            <option value="Type">Type</option>
+                            <option value="Activation">Activation</option>
+                            <option value="Event">Event</option>
+
+                        </select>
+                    </th>
+                    <th style="width : 75%;" colspan="3">
+                        <input type="text" value="@Model[1].TypeValue" name="TypeValue2" id="TypeValue2" style="font-size : 18px" class="form-control" />
+                    </th>
+                </tr>
+                <tr style="border-top : 1px solid Black; padding-bottom : 10px" class="MetricName" !important>
+                    <td style="width : 25%; border-right : 1px solid black">KPI</td>
+                    <td style="width : 25%; ">
+                        <input type="text" value="@Model[1].Kpi1" name="Kpi21" id="Kpi21" class="form-control" />
+                    </td>
+                    <td style="width : 25%; ">
+                        <input type="text" value="@Model[1].Kpi2" name="kpi22" id="kpi22" class="form-control" />
+                    </td>
+                    <td style="width : 25%; ">
+                        <input type="text" value="@Model[1].Kpi3" name="Kpi23" id="Kpi23" class="form-control" />
+                    </td>
+                </tr>
+                <tr style=" padding-bottom : 10px" class="MetricName" !important>
+                    <td style="width : 25%; border-right : 1px solid black">Result</td>
+                    <td style="width : 25%; ">
+                        <input type="text" value="@Model[1].Result1" name="Result21" id="Result21" class="form-control" />
+                    </td>
+                    <td style="width : 25%; ">
+                        <input type="text" value="@Model[1].Result2" name="Result22" id="Result22" class="form-control" />
+                    </td>
+                    <td style="width : 25%; ">
+                        <input type="text" value="@Model[1].Result3" name="Result23" id="Result23" class="form-control" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10">
+
+        </div>
+        <div class="col-sm-2">
+            <input type="submit" class="btn btn-primary" value="Save" />
+        </div>
+    </div>
+
+}
+
+

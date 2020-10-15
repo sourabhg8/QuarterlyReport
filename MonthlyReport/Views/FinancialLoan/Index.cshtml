@@ -1,0 +1,103 @@
+﻿@model List<MonthlyReport.Models.FinancialLoan>
+@{
+    ViewBag.Title = "Financials";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 0;
+    string rowHeader = string.Empty;
+    int role = Convert.ToInt32(Session["roleid"].ToString());
+}
+
+
+<div class="row">
+    <div class=" col-sm-4 MetricBold">
+        <h5><strong>FINANCIAL LOANS</strong></h5>
+    </div>
+    <div class="col-sm-6">
+
+    </div>
+    @if (role == 1 || role == 9)
+    {
+    <div class="col-sm-2">
+        @Html.ActionLink("Edit", "FinancialLoanEdit", "FinancialLoan", null, new { @class = "btn btn-primary" })
+    </div>
+    }
+</div>
+<br />
+
+<div class="row">
+    <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+        <tr style="border-bottom : 2px solid Black; border-top : 2px solid Black; text-align : center;"  class="MetricBold" !important >
+            <th style="width : 20%; border-right : 1px solid black; text-align : center; vertical-align : middle" class="closetotable"><h5 class="closetotable">Phase</h5></th>
+            <th style="width : 10%; border-right : 1px solid black; vertical-align : middle" class="closetotable"><h5 class="closetotable">Lender</h5></th>
+            <th style="width : 20%; border-right : 1px solid black; vertical-align : middle" class="closetotable"><h5 class="closetotable">Loan Balance (M$)</h5>@Model[0].date</th>
+            <th style="width : 10%; border-right : 1px solid black; vertical-align : middle" class="closetotable"><h5 class="closetotable">Rate</h5></th>
+            <th style="width : 20%; border-right : 1px solid black; vertical-align : middle" class="closetotable"><h5 class="closetotable">Term </h5></th>
+            <th style="width : 20%; vertical-align : middle; " class="closetotable"><h5 class="closetotable">Expiry Term</h5></th>
+        </tr>
+        @foreach (var obj in Model)
+        {
+            i++;
+
+            switch (i)
+            {
+                case 1:
+                    rowHeader = "I-II";
+                    break;
+                case 2:
+                    rowHeader = "I-II";
+                    break;
+                case 3:
+                    rowHeader = "I-II";
+                    break;
+                case 4:
+                    rowHeader = "II";
+                    break;
+                case 5:
+                    rowHeader = "III";
+                    break;
+                case 6:
+                    rowHeader = "III-S2";
+                    break;
+                case 7:
+                    rowHeader = "III-S11";
+                    break;
+                case 8:
+                    rowHeader = "IV - VI";
+                    break;
+                case 9:
+                    rowHeader = "IV - VI (5C&7A)";
+                    break;
+                case 10:
+                    rowHeader = "Total";
+                    break;
+            }
+                
+            if(i == Model.Count())
+            {
+                <tr style="border-bottom : 1px solid Black; border-top : 1px solid black;" class="MetricName"  !important>
+                    <td style="width : 20%; border-right : 1px solid black; text-align : center; font-size : 16px" class="MetricBold">@rowHeader</td>
+                    <td style="width : 10%; border-right : 1px solid black">@obj.Lender</td>
+                    <td style="width : 20%; border-right : 1px solid black; text-align : right;">@obj.Loanbalance</td>
+                    <td style="width : 10%; border-right : 1px solid black; text-align : right;">@obj.Rate</td>
+                    <td style="width : 20%; border-right : 1px solid black">@obj.Term</td>
+                    <td style="width : 20%; ">@obj.Expiryterm</td>
+
+                </tr>
+            }
+            else
+            {
+                <tr class="MetricName"  !important>
+                    <td style="width : 20%; border-right : 1px solid black; text-align : center; font-size : 16px;" class="MetricBold">@rowHeader</td>
+                    <td style="width : 10%; border-right : 1px solid black">@obj.Lender</td>
+                    <td style="width : 20%; border-right : 1px solid black;text-align :right;">@obj.Loanbalance</td>
+                    <td style="width : 10%; border-right : 1px solid black; text-align : right;">@obj.Rate</td>
+                    <td style="width : 20%; border-right : 1px solid black">@obj.Term</td>
+                    <td style="width : 20%;">@obj.Expiryterm</td>
+
+                </tr>
+            }
+        }
+
+    </table>
+    </div>
+

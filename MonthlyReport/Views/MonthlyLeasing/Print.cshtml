@@ -1,0 +1,297 @@
+﻿
+@model MonthlyReport.Models.Leasing
+
+
+
+<p class="page">
+    <h2 style="font-family : Zahrah; font-weight : bold; font-style : italic"><u>Leasing</u></h2>
+    <br />
+            <h3 style="margin-top : 0.1rem; margin-bottom :0.1rem; font-family : Metric; font-weight :bold" ><strong>NEW TENANTS OPENING IN  @Model.NewTenantOpenings[0].Months.ToUpper()</strong></h3>
+
+
+    <div class="">
+        <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+            <tr style="padding-bottom : 10px" class="" !important>
+                <th style="width : 20%; border-right : 1px solid black; vertical-align : middle; border-bottom : 2px solid Black; border-top : 2px solid Black; "><h5 class="closetotable">Tenant</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; vertical-align : middle; border-bottom : 2px solid Black; border-top : 2px solid Black; " class="textaligncenter"><h5 class="closetotable">Sector</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; vertical-align : middle; border-bottom : 2px solid Black; border-top : 2px solid Black; " class="textaligncenter"><h5 class="closetotable">Unit No.</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; vertical-align : middle; border-bottom : 2px solid Black; border-top : 2px solid Black; " class="textaligncenter"><h5 class="closetotable">GLA</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; vertical-align : middle; border-bottom : 2px solid Black; border-top : 2px solid Black; " class="textaligncenter"><h5 class="closetotable">Net Rent</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; vertical-align : middle; border-bottom : 2px solid Black; border-top : 2px solid Black; " class="textaligncenter"><h5 class="closetotable">NER</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; vertical-align : middle; border-bottom : 2px solid Black; border-top : 2px solid Black; " class="textaligncenter"><h5 class="closetotable">LLW</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; vertical-align : middle; border-bottom : 2px solid Black; border-top : 2px solid Black; " class="textaligncenter"><h5 class="closetotable">TA</h5></th>
+                <th style="width : 10%; vertical-align : middle; border-bottom : 2px solid Black; border-top : 2px solid Black; " class="textaligncenter"><h5 class="closetotable">Commision</h5></th>
+            </tr>
+            @foreach (var obj in Model.NewTenantOpenings)
+            {
+                <tr style="border-bottom : 0px solid Black; font-family : Metric; font-size : 12px" class="" !important>
+                    <td style="width : 20%; border-right : 1px solid black">@obj.Tenant</td>
+                    <td style="width : 10%; border-right : 1px solid black">@obj.Sector</td>
+                    <td style="width : 10%; border-right : 1px solid black">@obj.UnitNo</td>
+                    <td style="width : 10%; border-right : 1px solid black">@obj.Gla</td>
+                    <td style="width : 10%; border-right : 1px solid black" class="textboxrightalign">$ @obj.NetRent</td>
+                    <td style="width : 10%; border-right : 1px solid black" class="textboxrightalign">$ @obj.Ner</td>
+                    <td style="width : 10%; border-right : 1px solid black" class="textboxrightalign">$ @obj.Llw</td>
+                    <td style="width : 10%; border-right : 1px solid black" class="textboxrightalign">$ @obj.TA</td>
+                    <td style="width : 10%; " class="textboxrightalign">$ @obj.Commision</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+    <br />
+    <br />
+    <!--Section 2-->
+     <h3 style="font-family : Metric; font-weight : bold; margin-bottom :0.1rem; margin-top :0.1rem;"><strong>DELIVERED SPACES IN @Model.DeliveredSpaces[0].Months.ToUpper()</strong></h3>
+    <div class="row">
+        <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+            <tr style=" padding-bottom : 10px; " class="MetricBold" !important>
+                <th style="width : 20%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle"><h5 class="closetotable">Tenant</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Sector</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Unit No.</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">GLA</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Date Of <br />Delivery</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Fixturing<br />Period</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Expected <br />Opening</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">NER</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">LLW</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">TA</h5></th>
+                <th style="width : 8%; vertical-align : middle; border-bottom : 2px solid Black; border-top : 2px solid Black;" class="textaligncenter"><h5 class="closetotable">Commision</h5></th>
+            </tr>
+            @foreach (var obj in Model.DeliveredSpaces)
+            {
+                <tr style="border-bottom : 0px solid Black; font-family : Metric; font-size : 12px;" class="MetricName" !important>
+                    <td style="width : 20%; border-right : 1px solid black">@obj.Tenant</td>
+                    <td style="width : 8%; border-right : 1px solid black">@obj.Sector</td>
+                    <td style="width : 8%; border-right : 1px solid black">@obj.UnitNo</td>
+                    <td style="width : 8%; border-right : 1px solid black">@obj.Gla</td>
+                    <td style="width : 8%; border-right : 1px solid black">@obj.DeliveryDate</td>
+                    <td style="width : 8%; border-right : 1px solid black">@obj.FixturingPeriod</td>
+                    <td style="width : 8%; border-right : 1px solid black">@obj.ExpectedOpening</td>
+                    <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.TA</td>
+                    <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.Llw</td>
+                    <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.TA</td>
+                    <td style="width : 8%; " class="textboxrightalign">$ @obj.Commision</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+    </p>
+
+
+  <p class="page">
+
+    <br />
+    <br />
+    <!--Section 3-->
+
+            <h3 style="font-family : Metric; font-weight : bold; margin-bottom :0.1rem; margin-top :0.1rem;"><strong>COMPLETED DEALS</strong></h3>
+
+    <div class="row">
+        <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+            <tr style=" padding-bottom : 10px" class="MetricBold" !important>
+                <th style="width : 20%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle"><h5 class="closetotable">Tenant</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Sector</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Unit No.</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">GLA</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Term</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Net Rent <br />Budget</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Net Rent <br />Actual</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">NER</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">LLW</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">TA</h5></th>
+                <th style="width : 8% ; vertical-align : middle; border-bottom : 2px solid Black; border-top : 2px solid Black;" class="textaligncenter"><h5 class="closetotable">Commision</h5></th>
+            </tr>
+            @foreach (var obj in Model.keyDeals)
+            {
+                <tr style="border-bottom : 0px solid Black; font-family : Metric; font-size : 12px" class="MetricName" !important>
+                    <td style="width : 20%; border-right : 1px solid black">@obj.Tenant</td>
+                    <td style="width : 8%; border-right : 1px solid black">@obj.Sector</td>
+                    <td style="width : 8%; border-right : 1px solid black">@obj.UnitNo</td>
+                    <td style="width : 8%; border-right : 1px solid black">@obj.Gla</td>
+                    <td style="width : 8%; border-right : 1px solid black">@obj.Term</td>
+                    <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.NetBudget</td>
+                    <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.NetRentActual</td>
+                    <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.TA</td>
+                    <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.Llw</td>
+                    <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.TA</td>
+                    <td style="width : 8%; " class="textboxrightalign">$ @obj.Commision</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+
+
+    <br />
+    <br />
+    <!--Section 4-->
+
+       
+  <h3 style="font-family : Metric; font-weight : bold; margin-bottom :0.1rem; margin-top :0.1rem;"><strong>COMPLETED RENEWALS</strong></h3>
+
+    <div class="row">
+        <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+            <tr style=" padding-bottom : 10px" class="MetricBold" !important>
+                <th style="width : 20%; border-right : 1px solid black ; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle"><h5 class="closetotable">Tenant</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Sector</h5></th>
+                <th style="width : 8%; border-right : 1px solid black ; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Unit No.</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">GLA</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Term</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Net Rent <br />Budget</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Net Rent <br />Actual</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">NER</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">LLW</h5></th>
+                <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">TA</h5></th>
+                <th style="width : 8%; vertical-align : middle; border-bottom : 2px solid Black; border-top : 2px solid Black;" class="textaligncenter"><h5 class="closetotable">Commision</h5></th>
+            </tr>
+            @foreach (var obj in Model.completedRenewals)
+            {
+                <tr style="border-bottom : 0px solid Black; font-family : Metric; font-size : 12px" class="MetricName" !important>
+                    <td style="width : 20%; border-right : 1px solid black">@obj.Tenant</td>
+                    <td style="width : 8%; border-right : 1px solid black">@obj.Sector</td>
+                    <td style="width : 8%; border-right : 1px solid black">@obj.UnitNo</td>
+                    <td style="width : 8%; border-right : 1px solid black">@obj.Gla</td>
+                    <td style="width : 8%; border-right : 1px solid black">@obj.Term</td>
+                    <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.NetBudget</td>
+                    <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.NetRentActual</td>
+                    <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.TA</td>
+                    <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.Llw</td>
+                    <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.TA</td>
+                    <td style="width : 8%; " class="textboxrightalign">$ @obj.Commision</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+    <br />
+    <br />
+    <!--Section 5-->
+
+ <h3 style="font-family : Metric; font-weight : bold; margin-bottom :0.1rem; margin-top :0.1rem;"><strong>HOT DEALS (+75% PROBABILITY CLOSING DEAL)</strong></h3>
+
+    <div class="row">
+        <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+            <tr style=" padding-bottom : 10px" class="" !important>
+                <th style="width : 10%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle"><h5 class="closetotable">Tenant</h5></th>
+                <th style="width : 7%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Sector</h5></th>
+                <th style="width : 7%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Unit No.</h5></th>
+                <th style="width : 7%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">GLA</h5></th>
+                <th style="width : 7%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Term</h5></th>
+                <th style="width : 7%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">LOI <br />Signed</h5></th>
+                <th style="width : 7%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Budget <br />Rate</h5></th>
+                <th style="width : 7%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Proposed <br />Rate</h5></th>
+                <th style="width : 7%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">NER</h5></th>
+                <th style="width : 7%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">LLW</h5></th>
+                <th style="width : 7%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">TA</h5></th>
+                <th style="width : 7%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Commission</h5></th>
+                <th style="width : 13%; vertical-align : middle; border-bottom : 2px solid Black; border-top : 2px solid Black;" class="textaligncenter"><h5 class="closetotable">Comments</h5></th>
+            </tr>
+            @foreach (var obj in Model.hotDeals)
+            {
+                <tr style="border-bottom : 0px solid Black; font-family : Metric; font-size : 12px;" class="MetricName" !important>
+                    <td style="width : 10%; border-right : 1px solid black">@obj.Tenant</td>
+                    <td style="width : 7%; border-right : 1px solid black">@obj.Sector</td>
+                    <td style="width : 7%; border-right : 1px solid black">@obj.UnitNo</td>
+                    <td style="width : 7%; border-right : 1px solid black">@obj.Gla</td>
+                    <td style="width : 7%; border-right : 1px solid black">@obj.Term</td>
+                    <td style="width : 7%; border-right : 1px solid black">@obj.LoiSigned</td>
+                    <td style="width : 7%; border-right : 1px solid black" class="textboxrightalign">$ @obj.BudgetRate</td>
+                    <td style="width : 7%; border-right : 1px solid black" class="textboxrightalign">$ @obj.ProposedRate</td>
+                    <td style="width : 7%; border-right : 1px solid black" class="textboxrightalign">$ @obj.Ner</td>
+                    <td style="width : 7%; border-right : 1px solid black" class="textboxrightalign">$ @obj.Llw</td>
+                    <td style="width : 7%; border-right : 1px solid black" class="textboxrightalign">$ @obj.TA</td>
+                    <td style="width : 7%; border-right : 1px solid black" class="textboxrightalign">$ @obj.Commision</td>
+                    <td style="width : 13%;">@obj.Comments</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+    </p>
+<p class="page">
+
+    <br />
+    <br />
+    <!--Section 6-->
+
+        <h3 style="font-family : Metric; font-weight : bold; margin-bottom :0.1rem; margin-top :0.1rem;"><strong>TENANT AT RISK</strong></h3>
+
+    <div class="">
+        <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+            <tr style=" padding-bottom : 10px" class="" !important>
+                <th style="width : 15%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle"><h5 class="closetotable">Tenant</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; text-align : center; vertical-align : middle"><h5 class="closetotable">Unit No.</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; text-align : center; vertical-align : middle"><h5 class="closetotable">GLA</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; text-align : center; vertical-align : middle"><h5 class="closetotable">GROC</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; text-align : center; vertical-align : middle"><h5 class="closetotable">Sales/SF</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; text-align : center; vertical-align : middle"><h5 class="closetotable">Rolling<br />12 Sales</h5></th>
+                <th style="width : 10%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black; text-align : center; vertical-align : middle"><h5 class="closetotable">AR YTD</h5></th>
+                <th style="width : 25%; vertical-align : middle; border-bottom : 2px solid Black; border-top : 2px solid Black;text-align : center"><h5 class="closetotable">Comments</h5></th>
+            </tr>
+            @foreach (var obj in Model.tenantsAtRisks)
+            {
+                <tr style="border-bottom : 0px solid Black; font-family : Metric; font-size : 12px;" class="" !important>
+                    <td style="width : 15%; border-right : 1px solid black">@obj.Tenant</td>
+                    <td style="width : 10%; border-right : 1px solid black">@obj.UnitNo</td>
+                    <td style="width : 10%; border-right : 1px solid black">@obj.Gla</td>
+                    <td style="width : 10%; border-right : 1px solid black" class="textboxrightalign">@obj.Groc %</td>
+                    <td style="width : 10%; border-right : 1px solid black" class="textboxrightalign">$ @obj.Sales</td>
+                    <td style="width : 10%; border-right : 1px solid black" class="textboxrightalign">$ @obj.RollingSales</td>
+                    <td style="width : 10%; border-right : 1px solid black" class="textboxrightalign">$ @obj.ArYtd</td>
+                    <td style="width : 25%;">@obj.Comments</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+    <br />
+    <br />
+    <!--Section 7-->
+
+
+    <h3 style="font-family : Metric; font-weight : bold; margin-top: 0.1rem;margin-bottom: 0.1rem;"><strong>TENANT CLOSURE</strong></h3>
+
+    <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+        <tr !important>
+            <th style="width : 12%; border-right : 1px solid black;  border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle"><h5 class="closetotable">Tenant</h5></th>
+            <th style="width : 8%; border-right : 1px solid black;  border-bottom : 2px solid Black; border-top : 2px solid Black; vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Sector</h5></th>
+            <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black;  vertical-align : middle" class="textaligncenter"><h5 class="closetotable">GLA</h5></th>
+            <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black;  vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Date Of <br /> Closure</h5></th>
+            <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black;  vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Reason Of <br />Closure</h5></th>
+            <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black;  vertical-align : middle" class="textaligncenter"><h5 class="closetotable">AR</h5></th>
+            <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black;  vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Occupancy</h5></th>
+            <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black;  vertical-align : middle" class="textaligncenter"><h5 class="closetotable">Co-Tenanacy<br />Risk</h5></th>
+            <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black;  vertical-align : middle" class="textaligncenter"><h5 class="closetotable">TI<br />Unamortized</h5></th>
+            <th style="width : 8%; border-right : 1px solid black; border-bottom : 2px solid Black; border-top : 2px solid Black;  vertical-align : middle" class="textaligncenter"><h5 class="closetotable">LLW<br />Unamortized</h5></th>
+            <th style="width : 16%; vertical-align : middle; border-bottom : 2px solid Black; border-top : 2px solid Black; " class="textaligncenter"><h5 class="closetotable">Comments and special provisions</h5></th>
+        </tr>
+        @foreach (var obj in Model.tenantClosures)
+        {
+            <tr style="font-family : Metric; font-size : 12px; font-weight :normal " class="" !important>
+                <td style="width : 12%; border-right : 1px solid black">@obj.Tenant</td>
+                <td style="width : 8%; border-right : 1px solid black">@obj.Sector</td>
+                <td style="width : 8%; border-right : 1px solid black">@obj.Gla</td>
+                <td style="width : 8%; border-right : 1px solid black">@obj.DateOfClosure</td>
+                <td style="width : 8%; border-right : 1px solid black">@obj.ReasonOfClosure</td>
+                <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.Ar</td>
+                <td style="width : 8%; border-right : 1px solid black">@obj.Occupancy</td>
+                <td style="width : 8%; border-right : 1px solid black">@obj.CoTenancyRisk</td>
+                <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.TI</td>
+                <td style="width : 8%; border-right : 1px solid black" class="textboxrightalign">$ @obj.LLW</td>
+                <td style="width : 16%;">@obj.Comments</td>
+            </tr>
+        }
+
+    </table>
+
+
+</p>
+

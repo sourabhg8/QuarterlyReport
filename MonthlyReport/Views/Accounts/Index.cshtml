@@ -1,0 +1,240 @@
+﻿@model IEnumerable<MonthlyReport.Models.Accounts>
+@{
+    ViewBag.Title = "Accounts Receivables";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 0;
+}
+@{
+    int role = Convert.ToInt32(Session["roleid"].ToString());
+}
+@if (role == 1 || role == 3)
+{
+<div class="row">
+    <div class="col-md-10">
+
+    </div>
+    <div class="col-md-2">@Html.ActionLink("Edit", "AccountsEdit", "Accounts", null, new { @class = "btn btn-primary" })</div>
+</div>
+<br />
+}
+<br />
+
+<div class="row">
+    <table class=" table" style="width:100% ;border : none; border-collapse : collapse" !important>
+        <tr style="border-bottom : 2px solid Black; border-top : 0px solid Black; padding-bottom : 10px" !important>
+            <th style="width : 4%"><h5 class="closetotable"></h5></th>
+            <th style="width : 14%; vertical-align : middle" class="MetricBold " !important><h5 class="closetotable">Tenant</h5></th>
+            <th style="width : 7% ; vertical-align : middle;" class="MetricBold textaligncenter" !important><h5 class="closetotable">Balance Overdue</h5></th>
+            <th style="width : 7% ; vertical-align : middle" class="MetricBold textaligncenter" !important><h5 class="closetotable">Net Balance</h5></th>
+            <th style="width : 7%; vertical-align : middle" class="MetricBold textaligncenter" !important><h5 class="closetotable">Provision</h5></th>
+            <th style="width : 7%; vertical-align : middle" class="MetricBold textaligncenter" !important><h5 class="closetotable">Receivable Balance</h5></th>
+            <th style="width : 7%; vertical-align : middle" class="MetricBold textaligncenter" !important><h5 class="closetotable">0-30 <br /> Days</h5></th>
+            <th style="width : 7%; vertical-align : middle" class="MetricBold textaligncenter" !important><h5 class="closetotable">31-60 <br /> Days</h5></th>
+            <th style="width : 7%; vertical-align : middle" class="MetricBold textaligncenter" !important><h5 class="closetotable">61-90 <br /> Days</h5></th>
+            <th style="width : 7%; vertical-align : middle" class="MetricBold textaligncenter" !important><h5 class="closetotable">90+ <br /> Days</h5></th>
+            <th style="width : 13%; vertical-align : middle" class="MetricBold textaligncenter" !important><h5 class="closetotable">Comments</h5></th>
+            <th style="width : 13%; vertical-align : middle" class="MetricBold textaligncenter" !important><h5 class="closetotable">Action</h5></th>
+        </tr>
+        @foreach (var obj in Model)
+        {
+            i++;
+
+            <tr>
+                @if (i <= (Model.Count() - 2))
+                {
+                    <td style="width : 4%; border-right : 1px solid black" class="MetricName" !important>@i</td>
+                    <td style="width : 14% ;border-right : 1px solid black" class="MetricName" !important>
+                        @*<input type="text" value="@obj.Tenant" name=@("tenant" + i) id=@("tenant" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        @obj.Tenant
+                    </td>
+
+                    <td style="width : 7% ;border-right : 1px solid black" class="MetricName textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.BalanceOverdue" name=@("BalanceOverDue" + i) id=@("BalanceOverDue" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.BalanceOverdue
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black" class="MetricName textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.NetBalance" name=@("netBalance" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.NetBalance
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black;" class="MetricName textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.Provision" name=@("provision" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.Provision
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black" class="MetricName textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.ReceivableBalance" name=@("ReceivableBalance" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.ReceivableBalance
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black" class="MetricName textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.ThirtyDays" name=@("thirtydays" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.ThirtyDays
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black" class="MetricName textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.SixtyDays" name=@("sixtydays" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.SixtyDays
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black" class="MetricName textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.NintyDays" name=@("nintydays" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.NintyDays
+
+                    </td>
+                    <td style="width : 7% ;border-right : 2px solid black" class="MetricName textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.NintyPlusDays" name=@("nintyplusdays" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.NintyPlusDays
+
+                    </td>
+                    <td style="width : 18% ;border-right : 2px solid black" class="MetricName" !important>
+                        @*<textarea name="comment" + @i rows="2" style="width : 100%; font-size : 13px" readonly>@obj.Comment</textarea>*@
+                        @obj.Comment
+                    </td>
+                    <td style="width : 18% " class="MetricName" !important>
+                        @*<textarea class="" name="action" + @i rows="2" style="width : 100%; font-size : 13px" readonly>@obj.Action</textarea>*@
+                        @obj.Action
+                    </td>
+
+
+                }
+                else if (i == (Model.Count() - 1))
+                {
+                    <td colspan="2" style="width : 18%;  border-right : 1px solid black; border-top : 2px solid black; text-align : center" class="MetricBold" !important><h5>Top 10 Overview</h5></td>
+
+                    <td style="width : 7% ;border-right : 1px solid black;border-top : 2px solid black;" class="MetricBold textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.BalanceOverdue" name=@("BalanceOverDue" + i) id=@("BalanceOverDue" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.BalanceOverdue
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black; border-top : 2px solid black;" class="MetricBold textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.NetBalance" name=@("netBalance" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.NetBalance
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black;border-top : 2px solid black;" class="MetricBold textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.Provision" name=@("provision" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.Provision
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black; border-top : 2px solid black;" class="MetricBold textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.ReceivableBalance" name=@("ReceivableBalance" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.ReceivableBalance
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black; border-top : 2px solid black;" class="MetricBold textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.ThirtyDays" name=@("thirtydays" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.ThirtyDays
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black; border-top : 2px solid black;" class="MetricBold textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.SixtyDays" name=@("sixtydays" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.SixtyDays
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black; border-top : 2px solid black;" class="MetricBold textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.NintyDays" name=@("nintydays" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.NintyDays
+
+                    </td>
+                    <td style="width : 7% ;border-right : 2px solid black; border-top : 2px solid black;" class="MetricBold textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.NintyPlusDays" name=@("nintyplusdays" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.NintyPlusDays
+
+                    </td>
+                    <td style="width : 18% ;border-right : 2px solid black; border-top : 2px solid black;" class="MetricBold" !important>
+                        @*<textarea name="comment" + @i rows="2" style="width : 100%; font-size : 13px" readonly>@obj.Comment</textarea>*@
+                        @obj.Comment
+                    </td>
+                    <td style="width : 18%; border-top : 2px solid black; " class="MetricBold" !important>
+                        @*<textarea class="" name="action" + @i rows="2" style="width : 100%; font-size : 13px" readonly>@obj.Action</textarea>*@
+                        @obj.Action
+                    </td>
+                }
+                else
+                {
+                    <td colspan="2" style="width : 18%; border-right : 1px solid black; border-top : 2px solid black;border-bottom : 2px solid black; text-align : center" class="MetricBold" !important><h5>Total Overview*</h5></td>
+                    <td style="width : 7% ;border-right : 1px solid black; border-top : 2px solid black;border-bottom : 2px solid black;" class="MetricBold textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.BalanceOverdue" name=@("BalanceOverDue" + i) id=@("BalanceOverDue" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.BalanceOverdue
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black; border-top : 2px solid black;border-bottom : 2px solid black;" class="MetricBold textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.NetBalance" name=@("netBalance" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.NetBalance
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black;border-top : 2px solid black;border-bottom : 2px solid black;" class="MetricBold textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.Provision" name=@("provision" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.Provision
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black;border-top : 2px solid black;border-bottom : 2px solid black;" class="MetricBold textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.ReceivableBalance" name=@("ReceivableBalance" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.ReceivableBalance
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black; border-top : 2px solid black;border-bottom : 2px solid black;" class="MetricBold textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.ThirtyDays" name=@("thirtydays" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.ThirtyDays
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black; border-top : 2px solid black;border-bottom : 2px solid black;" class="MetricBold textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.SixtyDays" name=@("sixtydays" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.SixtyDays
+
+                    </td>
+                    <td style="width : 7% ;border-right : 1px solid black; border-top : 2px solid black;border-bottom : 2px solid black;" class="MetricBold textboxrightalign" !important>
+                        @*<input type="text" value="@obj.NintyDays" name=@("nintydays" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.NintyDays
+
+                    </td>
+                    <td style="width : 7% ;border-right : 2px solid black; border-top : 2px solid black;border-bottom : 2px solid black;" class="MetricBold textboxrightalign" !important>
+
+                        @*<input type="text" value="@obj.NintyPlusDays" name=@("nintyplusdays" + i) class="form-control" style=" width : 100%;font-size : 13px" readonly />*@
+                        $ @obj.NintyPlusDays
+
+                    </td>
+                    <td style="width : 18% ;border-right : 2px solid black; border-top : 2px solid black;border-bottom : 2px solid black;" class="MetricBold" !important>
+                        @*<textarea name="comment" + @i rows="2" style="width : 100%; font-size : 13px" readonly>@obj.Comment</textarea>*@
+                        @obj.Comment
+                    </td>
+                    <td style="width : 18%; border-top : 2px solid black;border-bottom : 2px solid black; " class="MetricBold" !important>
+                        @*<textarea class="" name="action" + @i rows="2" style="width : 100%; font-size : 13px" readonly>@obj.Action</textarea>*@
+                        @obj.Action
+                    </td>
+                }
+
+            </tr>
+
+        }
+    </table>
+
+</div>
+<div class="row">
+    <div class="col-sm-9"></div>
+    <div style=" text-align :right;font-size : 12px;" class="MetricName col-sm-3">*Total of all the tenants</div>
+</div>
